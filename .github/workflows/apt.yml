@@ -14,30 +14,42 @@ jobs:
   build-apt-repo:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
           ref: gh-pages
+
+      - name: Create apt directory structure
+        run: |
+          mkdir -p apt/pool/main
+          mkdir -p apt/dists/stable/main/binary-amd64
 
       - name: Download .deb package
         run: |
           VERSION="${{ github.event.release.tag_name }}"
           VERSION="${VERSION#v}"
-          wget "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/heidr_${VERSION}_amd64.deb"
+          wget "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/heidr_${VERSION}_amd64.deb" -O apt/pool/main/heidr_${VERSION}_amd64.deb
 
-      - name: Setup APT Repository
-        uses: MauroDruwel/apt-repo-action@v2.1.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          repo_supported_arch: amd64
-          repo_supported_version: stable
-          file: '*.deb'
-          file_target_version: stable
-          private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          key_passphrase: ''
-          page_branch: gh-pages
-          public_key_output_file: apt/pubkey.gpg
-          apt_folder: apt
+      - name: Import GPG key
+        run: |
+          echo "${{ secrets.GPG_PRIVATE_KEY }}" | gpg --batch --import
+
+      - name: Generate Packages file
+        run: |
+          cd apt
+          dpkg-scanpackages --arch amd64 pool/ > dists/stable/main/binary-amd64/Packages
+          gzip -k -f dists/stable/main/binary-amd64/Packages
+
+      - name: Generate Release files
+        run: |
+          cd apt/dists/stable
+          apt-ftparchive release . > Release
+          gpg --batch --yes --default-key "heidr" -abs -o Release.gpg Release
+          gpg --batch --yes --default-key "heidr" --clearsign -o InRelease Release
+
+      - name: Export public key
+        run: |
+          gpg --armor --export > apt/pubkey.gpg
 
       - name: Commit and push
         run: |
