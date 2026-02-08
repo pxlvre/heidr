@@ -1,0 +1,25 @@
+name: Update Homebrew Formula
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  update-formula:
+    name: Update Homebrew Formula
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Update Homebrew formula
+        uses: mislav/bump-homebrew-formula-action@v3
+        with:
+          formula-name: heidr
+          formula-path: Formula/heidr.rb
+          homebrew-tap: pxlvre/homebrew-heidr
+          download-url: https://github.com/pxlvre/heidr/archive/refs/tags/${{ github.event.release.tag_name }}.tar.gz
+          commit-message: |
+            heidr ${{ github.event.release.tag_name }}
+            
+            Created by https://github.com/pxlvre/heidr/releases/tag/${{ github.event.release.tag_name }}
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
