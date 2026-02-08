@@ -3,6 +3,12 @@ name: Publish to AUR
 on:
   release:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v0.0.6)'
+        required: true
+        default: 'v0.0.6'
 
 jobs:
   aur-publish:
