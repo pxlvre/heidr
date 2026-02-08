@@ -66,6 +66,12 @@ cd heidr
 makepkg -si
 ```
 
+### Via Bun
+
+```bash
+bun install -g heidr
+```
+
 ### Via npm
 
 ```bash
