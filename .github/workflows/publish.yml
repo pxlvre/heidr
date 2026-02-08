@@ -50,6 +50,9 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: |
+          # Create a copy with scoped name for GitHub Packages
+          jq '.name = "@pxlvre/heidr"' package.json > package-gh.json
+          mv package-gh.json package.json
           echo "@pxlvre:registry=https://npm.pkg.github.com" > .npmrc
           npm publish
         env:
