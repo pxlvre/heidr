@@ -1,0 +1,80 @@
+name: Build Linux Packages
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-packages:
+    name: Build .deb and .rpm packages
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build standalone binary for Linux
+        run: bun build --compile ./cli/index.ts --outfile heidr-linux-amd64
+
+      - name: Install nfpm
+        run: |
+          curl -sfL https://install.goreleaser.com/github.com/goreleaser/nfpm.sh | sh
+          sudo mv ./bin/nfpm /usr/local/bin/
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Build .deb package
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
+        run: nfpm package --packager deb --target heidr_${VERSION}_amd64.deb
+
+      - name: Build .rpm package
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
+        run: nfpm package --packager rpm --target heidr-${VERSION}.x86_64.rpm
+
+      - name: Create tarball for AUR
+        env:
+          VERSION: ${{ steps.version.outputs.VERSION }}
+        run: |
+          mkdir -p heidr-linux-amd64-dist
+          cp heidr-linux-amd64 heidr-linux-amd64-dist/heidr
+          tar -czf heidr-linux-amd64.tar.gz -C heidr-linux-amd64-dist heidr
+
+      - name: Upload .deb to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: heidr_${{ steps.version.outputs.VERSION }}_amd64.deb
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload .rpm to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: heidr-${{ steps.version.outputs.VERSION }}.x86_64.rpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Linux binary tarball to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: heidr-linux-amd64.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload standalone binary to release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: heidr-linux-amd64
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

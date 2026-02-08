@@ -30,6 +30,36 @@ brew tap pxlvre/heidr
 brew install heidr
 ```
 
+### Via package manager (Linux)
+
+**Debian/Ubuntu (.deb):**
+
+```bash
+# Download from releases
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr_0.0.5_amd64.deb
+sudo dpkg -i heidr_0.0.5_amd64.deb
+```
+
+**Fedora/RHEL/CentOS (.rpm):**
+
+```bash
+# Download from releases
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr-0.0.5.x86_64.rpm
+sudo rpm -i heidr-0.0.5.x86_64.rpm
+```
+
+**Arch Linux (AUR):**
+
+```bash
+# Using yay or your preferred AUR helper
+yay -S heidr
+
+# Or manually
+git clone https://aur.archlinux.org/heidr.git
+cd heidr
+makepkg -si
+```
+
 ### Via npm
 
 ```bash
