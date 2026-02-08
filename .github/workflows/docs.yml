@@ -33,6 +33,14 @@ jobs:
       - name: Generate documentation
         run: bun run scripts/build-docs.ts
 
+      - name: Fetch APT repository from gh-pages
+        run: |
+          git fetch origin gh-pages
+          git checkout origin/gh-pages -- apt/ 2>/dev/null || echo "No apt directory yet"
+          if [ -d "apt" ]; then
+            cp -r apt docs/
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
