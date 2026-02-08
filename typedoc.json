@@ -1,0 +1,46 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./index.ts",
+    "./cli/index.ts",
+    "./cli/commands",
+    "./providers",
+    "./config",
+    "./utils",
+    "./errors"
+  ],
+  "entryPointStrategy": "expand",
+  "out": "docs/typedocs",
+  "tsconfig": "tsconfig.docs.json",
+  "exclude": ["**/*.test.ts", "**/tests/**", "**/*.spec.ts"],
+  "skipErrorChecking": true,
+  "plugin": [],
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeExternals": true,
+  "readme": "none",
+  "name": "heidr TypeDocs",
+  "includeVersion": true,
+  "githubPages": false,
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  },
+  "categorizeByGroup": true,
+  "sort": ["kind", "instance-first", "alphabetical"],
+  "kindSortOrder": [
+    "Function",
+    "Class",
+    "Constructor",
+    "Property",
+    "Method",
+    "TypeAlias",
+    "Interface"
+  ],
+  "hideGenerator": false,
+  "sidebarLinks": {
+    "← Back to Commands": "../index.html",
+    "GitHub": "https://github.com/pxlvre/heidr",
+    "npm": "https://www.npmjs.com/package/heidr"
+  }
+}

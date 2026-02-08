@@ -1,0 +1,48 @@
+name: APT Repository
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-apt-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Download .deb package
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="${VERSION#v}"
+          wget "https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }}/heidr_${VERSION}_amd64.deb"
+
+      - name: Setup APT Repository
+        uses: MauroDruwel/apt-repo-action@v2.1.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_supported_arch: amd64
+          repo_supported_version: stable
+          file: '*.deb'
+          file_target_version: stable
+          private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          key_passphrase: ''
+          page_branch: gh-pages
+          public_key_output_file: apt/pubkey.gpg
+          apt_folder: apt
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add apt/
+          git commit -m "Update APT repository for ${{ github.event.release.tag_name }}" || true
+          git push

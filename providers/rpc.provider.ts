@@ -25,4 +25,21 @@ export class RpcProvider {
   getClient(): PublicClient {
     return this.client;
   }
+
+  /**
+   * Get balance of an address
+   * @param address - The address to check balance for
+   * @returns The balance in wei
+   */
+  async getBalance(address: `0x${string}`): Promise<bigint> {
+    return this.client.getBalance({ address });
+  }
+
+  /**
+   * Get current gas price
+   * @returns The gas price in wei
+   */
+  async getGasPrice(): Promise<bigint> {
+    return this.client.getGasPrice();
+  }
 }

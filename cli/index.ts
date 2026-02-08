@@ -6,13 +6,15 @@ import { Command } from 'commander';
 import { chainsCommand } from './commands/chains.js';
 import { blockCommand } from './commands/block.js';
 import { txCommand } from './commands/tx.js';
+import { balanceCommand } from './commands/balance.js';
+import { gasCommand } from './commands/gas.js';
 
 const program = new Command();
 
 program
   .name('heidr')
   .description('EVM blockchain CLI tool')
-  .version('0.0.5', '-v, --version', 'Output the current version')
+  .version('0.0.6', '-v, --version', 'Output the current version')
   .addHelpText(
     'after',
     `
@@ -29,9 +31,11 @@ Examples:
 `
   );
 
-// Add commands
+// Register commands
 program.addCommand(chainsCommand);
 program.addCommand(blockCommand);
 program.addCommand(txCommand);
+program.addCommand(balanceCommand);
+program.addCommand(gasCommand);
 
 program.parse();
