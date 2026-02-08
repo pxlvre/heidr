@@ -1,0 +1,19 @@
+Package: heidr
+Version: 0.0.6
+Architecture: amd64
+Maintainer: pxlvre.eth <https://github.com/pxlvre>
+Installed-Size: 101183
+Recommends: ca-certificates
+Filename: pool/main/heidr_0.0.6_amd64.deb
+Size: 40175166
+MD5sum: 7350245f46b66ca80846f18e48fc5ab0
+SHA1: 3d2ed6f6c6150d10fd2e7f7f902bc39f0d2faca2
+SHA256: 89be0350bd0956fafe94443342f51412ea85ccae3983890b97ccfd153523c7e1
+Section: utils
+Priority: optional
+Homepage: https://github.com/pxlvre/heidr
+Description: EVM blockchain CLI tool
+ A command-line interface for inspecting and interacting with EVM blockchains.
+ Supports Ethereum, Arbitrum, Optimism, Polygon, Base, and more.
+License: AGPL-3.0-or-later
+
