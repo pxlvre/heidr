@@ -1,0 +1,56 @@
+name: Publish to AUR
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  aur-publish:
+    name: Publish to Arch User Repository
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Publishing version: ${VERSION}"
+
+      - name: Wait for release assets
+        run: |
+          echo "Waiting 60 seconds for packages workflow to upload tarball..."
+          sleep 60
+
+      - name: Download release tarball
+        run: |
+          TARBALL_URL="https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.VERSION }}/heidr-linux-amd64.tar.gz"
+          echo "Downloading: ${TARBALL_URL}"
+          wget -q "${TARBALL_URL}" -O heidr-linux-amd64.tar.gz
+          
+      - name: Calculate SHA256
+        id: sha256
+        run: |
+          SHA256=$(sha256sum heidr-linux-amd64.tar.gz | awk '{print $1}')
+          echo "SHA256=${SHA256}" >> $GITHUB_OUTPUT
+          echo "Tarball SHA256: ${SHA256}"
+
+      - name: Update PKGBUILD
+        run: |
+          sed -i "s/^pkgver=.*/pkgver=${{ steps.version.outputs.VERSION }}/" PKGBUILD
+          sed -i "s/^sha256sums=.*/sha256sums=('${{ steps.sha256.outputs.SHA256 }}')/" PKGBUILD
+          cat PKGBUILD
+
+      - name: Publish to AUR
+        uses: KSXGitHub/github-actions-deploy-aur@v2.7.2
+        with:
+          pkgname: heidr
+          pkgbuild: ./PKGBUILD
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: "Update to v${{ steps.version.outputs.VERSION }}"
+          ssh_keyscan_types: rsa,ecdsa,ed25519
