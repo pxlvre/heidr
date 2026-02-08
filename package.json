@@ -1,6 +1,6 @@
 {
   "name": "heidr",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "EVM blockchain CLI tool",
   "author": "pxlvre.eth",
   "license": "AGPL-3.0-or-later",
@@ -43,6 +43,9 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
     "prepare": "husky",
     "prepublishOnly": "bun run lint && bun run format:check"
   },

@@ -10,6 +10,17 @@
 
 **heidr** is a command-line interface for inspecting and interacting with EVM blockchains.
 
+---
+
+> _Nought was there but byte and hex,_  
+> _ne'er a prompt nor token gleamed,_  
+> _till heidr's runes were cast by hand._  
+> _Nine commands I saw, and nine the worlds,_  
+> _each chain a branch on the cosmic tree,_  
+> _and each flag a beacon to realms unseen._
+
+---
+
 ## Installation
 
 ### Via Homebrew (macOS/Linux)
@@ -115,7 +126,7 @@ bun run lint
 
 See [ROADMAP.md](./ROADMAP.md) for planned features including JSON-RPC methods, Etherscan integration, Tenderly, Dune Analytics, and Gelato support.
 
-**Current Version:** v0.0.4 (in development)
+**Current Version:** v0.0.5
 
 ## Tech Stack
 
