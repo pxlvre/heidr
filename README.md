@@ -87,7 +87,7 @@ bun run lint
 
 See [ROADMAP.md](./ROADMAP.md) for planned features including JSON-RPC methods, Etherscan integration, Tenderly, Dune Analytics, and Gelato support.
 
-**Current Version:** v0.1 (in development)
+**Current Version:** v0.0.4 (in development)
 
 ## Tech Stack
 
