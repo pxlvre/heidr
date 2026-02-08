@@ -12,6 +12,13 @@
 
 ## Installation
 
+### Via Homebrew (macOS/Linux)
+
+```bash
+brew tap pxlvre/heidr
+brew install heidr
+```
+
 ### Via npm
 
 ```bash
