@@ -12,6 +12,13 @@
 
 ## Installation
 
+### Via Homebrew (macOS/Linux)
+
+```bash
+brew tap pxlvre/heidr
+brew install heidr
+```
+
 ### Via npm
 
 ```bash
@@ -35,6 +42,8 @@ bun link
 
 ## Usage
 
+### Chains
+
 ```bash
 # List all supported chains
 heidr chains --list
@@ -46,21 +55,47 @@ heidr chains --info mainnet
 heidr chains --info arbitrum --json
 ```
 
+### Blocks
+
+```bash
+# Get latest block from Ethereum mainnet
+heidr block latest
+
+# Get latest block from Arbitrum
+heidr block latest --chain arbitrum
+
+# Get specific block from Polygon
+heidr block 70000000 --chain polygon
+```
+
+### Transactions
+
+```bash
+# Get transaction from Ethereum mainnet
+heidr tx 0x086164dca926230a5b67e572888a26dee10708a328477b49fdb94ac7bc446260
+
+# Get transaction from Arbitrum
+heidr tx 0x4fedc9635b64f4d3012345da58e71fc366c789045a9046e9836f81a0eafac198 --chain arbitrum
+
+# Get transaction as JSON
+heidr tx 0x123... --json
+```
+
 ## Container Usage
 
 Build and run heidr using Podman (or Docker):
 
 ```bash
-# Build the image
-podman build -t heidr .
+# From GitHub Container Registry
+podman pull ghcr.io/pxlvre/heidr:latest
+podman run --rm ghcr.io/pxlvre/heidr chains --list
 
-# Run heidr commands
-podman run --rm heidr chains --list
-podman run --rm heidr chains --info mainnet
-podman run --rm heidr chains --list --json
+# From Docker Hub
+docker pull pxlvre/heidr:latest
+docker run --rm pxlvre/heidr chains --list
 
 # Get help
-podman run --rm heidr --help
+podman run --rm ghcr.io/pxlvre/heidr --help
 ```
 
 ## Development
@@ -80,7 +115,7 @@ bun run lint
 
 See [ROADMAP.md](./ROADMAP.md) for planned features including JSON-RPC methods, Etherscan integration, Tenderly, Dune Analytics, and Gelato support.
 
-**Current Version:** v0.1 (in development)
+**Current Version:** v0.0.4 (in development)
 
 ## Tech Stack
 

@@ -1,6 +1,6 @@
 {
   "name": "heidr",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "EVM blockchain CLI tool",
   "author": "pxlvre.eth",
   "license": "AGPL-3.0-or-later",
@@ -18,7 +18,8 @@
     "blockchain",
     "cli",
     "viem",
-    "web3"
+    "web3",
+    "bun"
   ],
   "module": "index.ts",
   "type": "module",
@@ -42,7 +43,16 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepare": "husky",
     "prepublishOnly": "bun run lint && bun run format:check"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write"
+    ],
+    "*.{ts,js}": [
+      "eslint --fix"
+    ]
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -50,6 +60,8 @@
     "@typescript-eslint/parser": "^8.54.0",
     "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.8.1"
   },
   "peerDependencies": {

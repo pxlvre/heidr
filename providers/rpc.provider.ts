@@ -6,6 +6,11 @@ import { createPublicClient, http, type PublicClient, type Chain } from 'viem';
 export class RpcProvider {
   private client: PublicClient;
 
+  /**
+   * Creates a new RPC provider instance
+   * @param rpcUrl - The RPC endpoint URL
+   * @param chain - The chain configuration
+   */
   constructor(rpcUrl: string, chain: Chain) {
     this.client = createPublicClient({
       chain,
@@ -15,6 +20,7 @@ export class RpcProvider {
 
   /**
    * Get the underlying Viem public client
+   * @returns The Viem PublicClient instance
    */
   getClient(): PublicClient {
     return this.client;
