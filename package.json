@@ -2,17 +2,47 @@
   "name": "heidr",
   "version": "0.0.1",
   "description": "EVM blockchain CLI tool",
+  "author": "pxlvre.eth",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pxlvre/heidr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pxlvre/heidr/issues"
+  },
+  "homepage": "https://github.com/pxlvre/heidr#readme",
+  "keywords": [
+    "ethereum",
+    "evm",
+    "blockchain",
+    "cli",
+    "viem",
+    "web3"
+  ],
   "module": "index.ts",
   "type": "module",
   "bin": {
     "heidr": "./cli/index.ts"
   },
+  "files": [
+    "cli",
+    "config",
+    "errors",
+    "providers",
+    "services",
+    "types",
+    "utils",
+    "index.ts",
+    "tsconfig.json"
+  ],
   "scripts": {
     "dev": "bun run cli/index.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "bun run lint && bun run format:check"
   },
   "devDependencies": {
     "@types/bun": "latest",
