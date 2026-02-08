@@ -31,7 +31,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Generate documentation
-        run: bunx typedoc
+        run: bun run scripts/build-docs.ts
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
