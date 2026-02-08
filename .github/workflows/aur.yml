@@ -8,7 +8,7 @@ jobs:
   aur-publish:
     name: Publish to Arch User Repository
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
           TARBALL_URL="https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.VERSION }}/heidr-linux-amd64.tar.gz"
           echo "Downloading: ${TARBALL_URL}"
           wget -q "${TARBALL_URL}" -O heidr-linux-amd64.tar.gz
-          
+
       - name: Calculate SHA256
         id: sha256
         run: |
@@ -52,5 +52,5 @@ jobs:
           commit_username: ${{ secrets.AUR_USERNAME }}
           commit_email: ${{ secrets.AUR_EMAIL }}
           ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
-          commit_message: "Update to v${{ steps.version.outputs.VERSION }}"
+          commit_message: 'Update to v${{ steps.version.outputs.VERSION }}'
           ssh_keyscan_types: rsa,ecdsa,ed25519

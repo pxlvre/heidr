@@ -1,17 +1,17 @@
-name: "heidr"
-arch: "amd64"
-platform: "linux"
-version: "${VERSION}"
-section: "utils"
-priority: "optional"
-maintainer: "pxlvre.eth <https://github.com/pxlvre>"
+name: 'heidr'
+arch: 'amd64'
+platform: 'linux'
+version: '${VERSION}'
+section: 'utils'
+priority: 'optional'
+maintainer: 'pxlvre.eth <https://github.com/pxlvre>'
 description: |
   EVM blockchain CLI tool
   A command-line interface for inspecting and interacting with EVM blockchains.
   Supports Ethereum, Arbitrum, Optimism, Polygon, Base, and more.
-vendor: "pxlvre"
-homepage: "https://github.com/pxlvre/heidr"
-license: "AGPL-3.0-or-later"
+vendor: 'pxlvre'
+homepage: 'https://github.com/pxlvre/heidr'
+license: 'AGPL-3.0-or-later'
 
 contents:
   - src: ./heidr-linux-amd64
