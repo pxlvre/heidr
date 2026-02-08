@@ -19,6 +19,8 @@ Examples:
   $ heidr chains --list              List all supported chains
   $ heidr chains --info mainnet      Get info about mainnet
   $ heidr block latest               Get latest block from Ethereum mainnet
+  $ heidr block latest --chain arbitrum   Get latest block from Arbitrum
+  $ heidr block 12345 --chain polygon     Get block 12345 from Polygon
   $ heidr --version                  Show version
   $ heidr --help                     Show help
 `
