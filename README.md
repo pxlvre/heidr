@@ -58,16 +58,16 @@ heidr chains --info arbitrum --json
 Build and run heidr using Podman (or Docker):
 
 ```bash
-# Build the image
-podman build -t heidr .
+# From GitHub Container Registry
+podman pull ghcr.io/pxlvre/heidr:latest
+podman run --rm ghcr.io/pxlvre/heidr chains --list
 
-# Run heidr commands
-podman run --rm heidr chains --list
-podman run --rm heidr chains --info mainnet
-podman run --rm heidr chains --list --json
+# From Docker Hub
+docker pull pxlvre/heidr:latest
+docker run --rm pxlvre/heidr chains --list
 
 # Get help
-podman run --rm heidr --help
+podman run --rm ghcr.io/pxlvre/heidr --help
 ```
 
 ## Development
