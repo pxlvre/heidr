@@ -10,6 +10,13 @@
 
 **heidr** is a command-line interface for inspecting and interacting with EVM blockchains.
 
+Nought was there but byte and hex,
+ne’er a prompt nor token gleamed,
+till heidr’s runes were cast by hand.
+Nine commands I saw, and nine the worlds,
+each chain a branch on the cosmic tree,
+and each flag a beacon to realms unseen.
+
 ## Installation
 
 ### Via Homebrew (macOS/Linux)

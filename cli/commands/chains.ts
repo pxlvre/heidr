@@ -57,7 +57,28 @@ export const chainsCommand = new Command('chains')
         }
       } else if (options.info) {
         const chainInfo = getChainInfo(options.info);
-        prettyPrint(chainInfo);
+
+        if (options.json) {
+          prettyPrint(chainInfo);
+        } else {
+          // Pretty table format
+          const table = new Table({
+            style: { head: ['cyan'] },
+          });
+
+          table.push(
+            ['Name', chainInfo.name],
+            ['Chain ID', chainInfo.id.toString()],
+            [
+              'Native Currency',
+              `${chainInfo.nativeCurrency.name} (${chainInfo.nativeCurrency.symbol}) - ${chainInfo.nativeCurrency.decimals} decimals`,
+            ],
+            ['RPC URL', chainInfo.rpcUrls?.default.http[0] || 'N/A'],
+            ['Block Explorer', chainInfo.blockExplorers?.default.url || 'N/A']
+          );
+
+          console.log(table.toString());
+        }
       } else {
         printInfo('Use --list to see all supported chains or --info <chain> to get chain details');
       }
