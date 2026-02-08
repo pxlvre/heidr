@@ -2,6 +2,10 @@
  * Base error class for all custom errors
  */
 export class HeidrError extends Error {
+  /**
+   * Creates a new HeidrError
+   * @param message - Error message
+   */
   constructor(message: string) {
     super(message);
     this.name = 'HeidrError';
@@ -12,6 +16,10 @@ export class HeidrError extends Error {
  * Error thrown when configuration is invalid or missing
  */
 export class ConfigurationError extends HeidrError {
+  /**
+   * Creates a new ConfigurationError
+   * @param message - Error message
+   */
   constructor(message: string) {
     super(message);
     this.name = 'ConfigurationError';
@@ -22,6 +30,10 @@ export class ConfigurationError extends HeidrError {
  * Error thrown when validation fails
  */
 export class ValidationError extends HeidrError {
+  /**
+   * Creates a new ValidationError
+   * @param message - Error message
+   */
   constructor(message: string) {
     super(message);
     this.name = 'ValidationError';
@@ -32,6 +44,10 @@ export class ValidationError extends HeidrError {
  * Error thrown when a resource is not found
  */
 export class NotFoundError extends HeidrError {
+  /**
+   * Creates a new NotFoundError
+   * @param message - Error message
+   */
   constructor(message: string) {
     super(message);
     this.name = 'NotFoundError';
@@ -42,6 +58,11 @@ export class NotFoundError extends HeidrError {
  * Error thrown when an RPC call fails
  */
 export class RpcError extends HeidrError {
+  /**
+   * Creates a new RpcError
+   * @param message - Error message
+   * @param code - Optional RPC error code
+   */
   constructor(
     message: string,
     public code?: number
@@ -55,6 +76,11 @@ export class RpcError extends HeidrError {
  * Error thrown when an API call fails
  */
 export class ApiError extends HeidrError {
+  /**
+   * Creates a new ApiError
+   * @param message - Error message
+   * @param statusCode - Optional HTTP status code
+   */
   constructor(
     message: string,
     public statusCode?: number

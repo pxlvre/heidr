@@ -7,6 +7,7 @@
  * heidr block 12345 --chain polygon
  */
 import { Command } from 'commander';
+import Table from 'cli-table3';
 import { createPublicClient, http } from 'viem';
 import { getChain } from '../../config/chains.js';
 import { prettyPrint, printError } from '../../utils/formatter.js';
@@ -30,7 +31,27 @@ export const blockCommand = new Command('block')
         blockNumber: blockArg !== 'latest' ? BigInt(blockArg) : undefined,
       });
 
-      prettyPrint(block);
+      if (options.json) {
+        prettyPrint(block);
+      } else {
+        // Pretty table format
+        const table = new Table({
+          style: { head: ['cyan'] },
+        });
+
+        table.push(
+          ['Block Number', block.number?.toString() || 'N/A'],
+          ['Block Hash', block.hash || 'N/A'],
+          ['Timestamp', new Date(Number(block.timestamp) * 1000).toISOString()],
+          ['Transactions', block.transactions.length.toString()],
+          ['Gas Used', block.gasUsed.toString()],
+          ['Gas Limit', block.gasLimit.toString()],
+          ['Base Fee Per Gas', block.baseFeePerGas?.toString() || 'N/A'],
+          ['Miner', block.miner]
+        );
+
+        console.log(table.toString());
+      }
     } catch (error) {
       printError(error instanceof Error ? error.message : 'Unknown error occurred');
       process.exit(1);
