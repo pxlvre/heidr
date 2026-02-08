@@ -22,18 +22,21 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
+          VERSION=${{ github.event.release.tag_name || github.event.inputs.version }}
+          VERSION=${VERSION#v}
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "Publishing version: ${VERSION}"
 
       - name: Wait for release assets
+        if: github.event_name == 'release'
         run: |
           echo "Waiting 60 seconds for packages workflow to upload tarball..."
           sleep 60
 
       - name: Download release tarball
         run: |
-          TARBALL_URL="https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.VERSION }}/heidr-linux-amd64.tar.gz"
+          VERSION=${{ steps.version.outputs.VERSION }}
+          TARBALL_URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/heidr-linux-amd64.tar.gz"
           echo "Downloading: ${TARBALL_URL}"
           wget -q "${TARBALL_URL}" -O heidr-linux-amd64.tar.gz
 
