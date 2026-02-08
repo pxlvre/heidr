@@ -22,7 +22,11 @@ jobs:
       - name: Extract version from tag
         id: version
         run: |
-          VERSION=${{ github.event.release.tag_name || github.event.inputs.version }}
+          if [ "${{ github.event_name }}" = "release" ]; then
+            VERSION="${{ github.event.release.tag_name }}"
+          else
+            VERSION="${{ github.event.inputs.version }}"
+          fi
           VERSION=${VERSION#v}
           echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
           echo "Publishing version: ${VERSION}"
@@ -35,7 +39,7 @@ jobs:
 
       - name: Download release tarball
         run: |
-          VERSION=${{ steps.version.outputs.VERSION }}
+          VERSION="${{ steps.version.outputs.VERSION }}"
           TARBALL_URL="https://github.com/${{ github.repository }}/releases/download/v${VERSION}/heidr-linux-amd64.tar.gz"
           echo "Downloading: ${TARBALL_URL}"
           wget -q "${TARBALL_URL}" -O heidr-linux-amd64.tar.gz
