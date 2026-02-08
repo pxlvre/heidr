@@ -11,13 +11,16 @@ program
   .name('heidr')
   .description('EVM blockchain CLI tool')
   .version('0.0.1', '-v, --version', 'Output the current version')
-  .addHelpText('after', `
+  .addHelpText(
+    'after',
+    `
 Examples:
   $ heidr chains --list              List all supported chains
   $ heidr chains --info mainnet      Get info about mainnet
   $ heidr --version                  Show version
   $ heidr --help                     Show help
-`);
+`
+  );
 
 // Add commands
 program.addCommand(chainsCommand);

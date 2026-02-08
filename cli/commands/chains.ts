@@ -20,21 +20,23 @@ export const chainsCommand = new Command('chains')
     try {
       if (options.list) {
         const chainNames = listChains();
-        
+
         if (options.json) {
           // Get full chain info for each chain name
-          const chainsInfo = chainNames.map(name => {
-            try {
-              return getChainInfo(name);
-            } catch {
-              return null;
-            }
-          }).filter(Boolean);
+          const chainsInfo = chainNames
+            .map((name) => {
+              try {
+                return getChainInfo(name);
+              } catch {
+                return null;
+              }
+            })
+            .filter(Boolean);
           prettyPrint(chainsInfo);
         } else {
           const table = new Table({
             head: ['Chain ID', 'Chain Name', 'Native Currency'],
-            style: { head: ['cyan'] }
+            style: { head: ['cyan'] },
           });
 
           chainNames.forEach((chainName) => {
@@ -43,7 +45,7 @@ export const chainsCommand = new Command('chains')
               table.push([
                 chainInfo.id.toString(),
                 chainInfo.name,
-                chainInfo.nativeCurrency.symbol
+                chainInfo.nativeCurrency.symbol,
               ]);
             } catch {
               // Skip chains that fail to load
