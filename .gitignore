@@ -34,3 +34,9 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .DS_Store
 
 CLAUDE.md
+# Build artifacts
+heidr-linux-amd64
+*.deb
+*.rpm
+*.tar.gz
+heidr-linux-amd64-dist/
