@@ -1,8 +1,6 @@
 <div align="center">
 
-<img src="./public/heidr_logo.png" alt="heidr logo" width="200"/>
-
-# heidr
+# heiðr
 
 > EVM blockchain CLI tool
 
@@ -32,20 +30,28 @@ brew install heidr
 
 ### Via package manager (Linux)
 
-**Debian/Ubuntu (.deb):**
+**Debian/Ubuntu (APT Repository):**
 
 ```bash
-# Download from releases
-wget https://github.com/pxlvre/heidr/releases/latest/download/heidr_0.0.5_amd64.deb
-sudo dpkg -i heidr_0.0.5_amd64.deb
+curl -s https://pxlvre.github.io/heidr/apt/pubkey.gpg | sudo apt-key add -
+echo "deb [arch=amd64] https://pxlvre.github.io/heidr/apt stable main" | sudo tee /etc/apt/sources.list.d/heidr.list
+sudo apt update
+sudo apt install heidr
+```
+
+Or download the `.deb` package directly:
+
+```bash
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr_0.0.6_amd64.deb
+sudo dpkg -i heidr_0.0.6_amd64.deb
 ```
 
 **Fedora/RHEL/CentOS (.rpm):**
 
 ```bash
 # Download from releases
-wget https://github.com/pxlvre/heidr/releases/latest/download/heidr-0.0.5.x86_64.rpm
-sudo rpm -i heidr-0.0.5.x86_64.rpm
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr-0.0.6.x86_64.rpm
+sudo rpm -i heidr-0.0.6.x86_64.rpm
 ```
 
 **Arch Linux (AUR):**
@@ -122,6 +128,32 @@ heidr tx 0x4fedc9635b64f4d3012345da58e71fc366c789045a9046e9836f81a0eafac198 --ch
 heidr tx 0x123... --json
 ```
 
+### Balances
+
+```bash
+# Get balance of an address
+heidr balance 0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97
+
+# Get balance on Arbitrum
+heidr balance 0x123... --chain arbitrum
+
+# Get balance as JSON
+heidr balance 0x123... --json
+```
+
+### Gas Prices
+
+```bash
+# Get current gas price on Ethereum mainnet
+heidr gas
+
+# Get gas price on a different chain
+heidr gas --chain arbitrum
+
+# Get gas price as JSON
+heidr gas --json
+```
+
 ## Container Usage
 
 Build and run heidr using Podman (or Docker):
@@ -156,7 +188,7 @@ bun run lint
 
 See [ROADMAP.md](./ROADMAP.md) for planned features including JSON-RPC methods, Etherscan integration, Tenderly, Dune Analytics, and Gelato support.
 
-**Current Version:** v0.0.5
+**Current Version:** v0.0.6
 
 ## Tech Stack
 

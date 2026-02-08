@@ -40,3 +40,7 @@ heidr-linux-amd64
 *.rpm
 *.tar.gz
 heidr-linux-amd64-dist/
+
+# TypeDoc generated docs
+docs/
+*.gpg
