@@ -42,6 +42,8 @@ bun link
 
 ## Usage
 
+### Chains
+
 ```bash
 # List all supported chains
 heidr chains --list
@@ -51,6 +53,32 @@ heidr chains --info mainnet
 
 # Get chain info as JSON
 heidr chains --info arbitrum --json
+```
+
+### Blocks
+
+```bash
+# Get latest block from Ethereum mainnet
+heidr block latest
+
+# Get latest block from Arbitrum
+heidr block latest --chain arbitrum
+
+# Get specific block from Polygon
+heidr block 70000000 --chain polygon
+```
+
+### Transactions
+
+```bash
+# Get transaction from Ethereum mainnet
+heidr tx 0x086164dca926230a5b67e572888a26dee10708a328477b49fdb94ac7bc446260
+
+# Get transaction from Arbitrum
+heidr tx 0x4fedc9635b64f4d3012345da58e71fc366c789045a9046e9836f81a0eafac198 --chain arbitrum
+
+# Get transaction as JSON
+heidr tx 0x123... --json
 ```
 
 ## Container Usage
