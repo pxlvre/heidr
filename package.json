@@ -1,6 +1,6 @@
 {
   "name": "heidr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "EVM blockchain CLI tool",
   "author": "pxlvre.eth",
   "license": "AGPL-3.0-or-later",
@@ -29,6 +29,7 @@
   "files": [
     "cli",
     "config",
+    "data",
     "errors",
     "providers",
     "services",

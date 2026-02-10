@@ -42,16 +42,16 @@ sudo apt install heidr
 Or download the `.deb` package directly:
 
 ```bash
-wget https://github.com/pxlvre/heidr/releases/latest/download/heidr_0.0.6_amd64.deb
-sudo dpkg -i heidr_0.0.6_amd64.deb
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr_0.0.7_amd64.deb
+sudo dpkg -i heidr_0.0.7_amd64.deb
 ```
 
 **Fedora/RHEL/CentOS (.rpm):**
 
 ```bash
 # Download from releases
-wget https://github.com/pxlvre/heidr/releases/latest/download/heidr-0.0.6.x86_64.rpm
-sudo rpm -i heidr-0.0.6.x86_64.rpm
+wget https://github.com/pxlvre/heidr/releases/latest/download/heidr-0.0.7.x86_64.rpm
+sudo rpm -i heidr-0.0.7.x86_64.rpm
 ```
 
 **Arch Linux (AUR):**
@@ -194,7 +194,7 @@ bun run lint
 
 See [ROADMAP.md](./ROADMAP.md) for planned features including JSON-RPC methods, Etherscan integration, Tenderly, Dune Analytics, and Gelato support.
 
-**Current Version:** v0.0.6
+**Current Version:** v0.0.7
 
 ## Tech Stack
 

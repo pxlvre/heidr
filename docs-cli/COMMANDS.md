@@ -102,9 +102,19 @@ heidr balance vitalik.eth --json
 
 ### `heidr gas`
 
-Get current gas prices for any supported chain.
+Gas-related utilities including prices, costs, and fee analysis.
 
-**Usage:** `heidr gas [options]`
+**Subcommands:**
+
+#### `heidr gas price`
+
+Get current gas prices for any supported chain with priority levels (low/average/high).
+
+**Usage:** `heidr gas price [priority] [options]`
+
+**Arguments:**
+
+- `[priority]` - Gas priority level: "low", "average", or "high" (optional - shows all if omitted)
 
 **Options:**
 
@@ -114,10 +124,113 @@ Get current gas prices for any supported chain.
 **Examples:**
 
 ```bash
-heidr gas
-heidr gas --chain arbitrum
-heidr gas --chain optimism --json
+# Show all priority levels
+heidr gas price
+heidr gas price --chain arbitrum
+
+# Show specific priority level
+heidr gas price low
+heidr gas price average --chain optimism
+heidr gas price high --chain polygon --json
 ```
+
+**Priority Levels:**
+
+- **Low** (25th percentile) - For non-urgent transactions
+- **Average** (50th percentile) - For normal transactions
+- **High** (75th percentile) - For urgent transactions
+
+#### `heidr gas cost`
+
+Estimate transaction cost (not yet implemented).
+
+#### `heidr gas code`
+
+Get gas costs for EVM opcodes.
+
+**Usage:** `heidr gas code <identifier> [options]`
+
+**Arguments:**
+
+- `<identifier>` - Opcode hex (e.g., 00, 0x01, FF) or name (e.g., STOP, ADD, PUSH1) - case insensitive
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+# Get gas cost by opcode name
+heidr gas code ADD
+heidr gas code PUSH1
+heidr gas code keccak256
+
+# Get gas cost by hex
+heidr gas code 00
+heidr gas code 0x01
+heidr gas code ff
+
+# JSON output
+heidr gas code ADD --json
+```
+
+**Information Displayed:**
+
+- Opcode hex value
+- Mnemonic name
+- Minimum gas cost
+- Stack input requirements
+- Stack output
+
+#### `heidr gas fee`
+
+Get detailed fee breakdown (not yet implemented).
+
+---
+
+### `heidr code`
+
+Get EVM opcode information from the complete EVM instruction set.
+
+**Usage:** `heidr code [identifier] [options]`
+
+**Arguments:**
+
+- `[identifier]` - Opcode hex (e.g., 00, 0x01, FF) or name (e.g., STOP, ADD, PUSH1) - case insensitive (optional - shows all if omitted)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+# List all opcodes
+heidr code
+heidr code --json
+
+# Get opcode by hex
+heidr code 00
+heidr code 0x01
+heidr code ff
+
+# Get opcode by name (case-insensitive)
+heidr code STOP
+heidr code ADD
+heidr code push1
+heidr code KECCAK256
+heidr code add --json
+```
+
+**Opcode Information Includes:**
+
+- Hex value
+- Mnemonic name
+- Minimum gas cost
+- Stack input requirements
+- Stack output
+- Description
 
 ---
 

@@ -7,10 +7,11 @@
  * heidr block 12345 --chain polygon
  */
 import { Command } from 'commander';
-import Table from 'cli-table3';
-import { createPublicClient, http } from 'viem';
-import { getChain } from '../../config/chains.js';
-import { prettyPrint, printError } from '../../utils/formatter.js';
+import { RpcProvider } from '@/providers/rpc.provider';
+import { getChain } from '@/config/chains';
+import { BlockService } from '@/services/rpc/block.service';
+import { printBlockTable, printBlockJson } from '@/cli/printers/block.printer';
+import { printError } from '@/utils/formatter';
 
 export const blockCommand = new Command('block')
   .description('Get block information')
@@ -19,38 +20,26 @@ export const blockCommand = new Command('block')
   .option('--json', 'Output as JSON')
   .action(async (blockArg: string, options) => {
     try {
+      // Get chain configuration
       const chain = getChain(options.chain);
+      const rpcUrl = chain.rpcUrls.default.http[0];
 
-      const client = createPublicClient({
-        chain,
-        transport: http(),
-      });
+      if (!rpcUrl) {
+        throw new Error(`No RPC URL available for chain: ${chain.name}`);
+      }
 
-      const block = await client.getBlock({
-        blockTag: blockArg === 'latest' ? 'latest' : undefined,
-        blockNumber: blockArg !== 'latest' ? BigInt(blockArg) : undefined,
-      });
+      // Initialize provider and service
+      const provider = new RpcProvider(rpcUrl, chain);
+      const blockService = new BlockService(provider);
 
+      // Get block
+      const block = await blockService.getBlock(blockArg);
+
+      // Print output
       if (options.json) {
-        prettyPrint(block);
+        printBlockJson(block);
       } else {
-        // Pretty table format
-        const table = new Table({
-          style: { head: ['cyan'] },
-        });
-
-        table.push(
-          ['Block Number', block.number?.toString() || 'N/A'],
-          ['Block Hash', block.hash || 'N/A'],
-          ['Timestamp', new Date(Number(block.timestamp) * 1000).toISOString()],
-          ['Transactions', block.transactions.length.toString()],
-          ['Gas Used', block.gasUsed.toString()],
-          ['Gas Limit', block.gasLimit.toString()],
-          ['Base Fee Per Gas', block.baseFeePerGas?.toString() || 'N/A'],
-          ['Miner', block.miner]
-        );
-
-        console.log(table.toString());
+        printBlockTable(block);
       }
     } catch (error) {
       printError(error instanceof Error ? error.message : 'Unknown error occurred');

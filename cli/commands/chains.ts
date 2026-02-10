@@ -1,8 +1,13 @@
 #!/usr/bin/env bun
 import { Command } from 'commander';
-import Table from 'cli-table3';
-import { listChains, getChainInfo } from '../../config/chains.js';
-import { prettyPrint, printError, printInfo } from '../../utils/formatter.js';
+import { listChains, getChainInfo } from '@/config/chains';
+import { printError, printInfo } from '@/utils/formatter';
+import {
+  printChainsListTable,
+  printChainsListJson,
+  printChainInfoTable,
+  printChainInfoJson,
+} from '@/cli/printers/chains.printer';
 
 /**
  * Command to list all supported chains or get info about a specific chain
@@ -19,65 +24,35 @@ export const chainsCommand = new Command('chains')
   .action(async (options) => {
     try {
       if (options.list) {
+        // Get all chain names
         const chainNames = listChains();
 
-        if (options.json) {
-          // Get full chain info for each chain name
-          const chainsInfo = chainNames
-            .map((name) => {
-              try {
-                return getChainInfo(name);
-              } catch {
-                return null;
-              }
-            })
-            .filter(Boolean);
-          prettyPrint(chainsInfo);
-        } else {
-          const table = new Table({
-            head: ['Chain ID', 'Chain Name', 'Native Currency'],
-            style: { head: ['cyan'] },
-          });
-
-          chainNames.forEach((chainName) => {
+        // Get full chain info for each chain
+        const chainsInfo = chainNames
+          .map((name) => {
             try {
-              const chainInfo = getChainInfo(chainName);
-              table.push([
-                chainInfo.id.toString(),
-                chainInfo.name,
-                chainInfo.nativeCurrency.symbol,
-              ]);
+              return getChainInfo(name);
             } catch {
-              // Skip chains that fail to load
+              return null;
             }
-          });
+          })
+          .filter(Boolean);
 
-          console.log(table.toString());
-          printInfo(`\nTotal: ${chainNames.length} chains supported`);
+        // Print output
+        if (options.json) {
+          printChainsListJson(chainsInfo);
+        } else {
+          printChainsListTable(chainsInfo);
         }
       } else if (options.info) {
+        // Get specific chain info
         const chainInfo = getChainInfo(options.info);
 
+        // Print output
         if (options.json) {
-          prettyPrint(chainInfo);
+          printChainInfoJson(chainInfo);
         } else {
-          // Pretty table format
-          const table = new Table({
-            style: { head: ['cyan'] },
-          });
-
-          table.push(
-            ['Name', chainInfo.name],
-            ['Chain ID', chainInfo.id.toString()],
-            [
-              'Native Currency',
-              `${chainInfo.nativeCurrency.name} (${chainInfo.nativeCurrency.symbol}) - ${chainInfo.nativeCurrency.decimals} decimals`,
-            ],
-            ['RPC URL', chainInfo.rpcUrls?.default.http[0] || 'N/A'],
-            ['Block Explorer', chainInfo.blockExplorers?.default.url || 'N/A']
-          );
-
-          console.log(table.toString());
+          printChainInfoTable(chainInfo);
         }
       } else {
         printInfo('Use --list to see all supported chains or --info <chain> to get chain details');

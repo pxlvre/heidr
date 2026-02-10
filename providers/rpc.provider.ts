@@ -42,4 +42,44 @@ export class RpcProvider {
   async getGasPrice(): Promise<bigint> {
     return this.client.getGasPrice();
   }
+
+  /**
+   * Get fee history for calculating gas price estimates
+   * @param blockCount - Number of blocks to analyze
+   * @param rewardPercentiles - Percentiles to calculate (e.g., [25, 50, 75])
+   * @returns Fee history data
+   */
+  async getFeeHistory(blockCount: number, rewardPercentiles: number[]) {
+    return this.client.getFeeHistory({
+      blockCount,
+      blockTag: 'latest',
+      rewardPercentiles,
+    });
+  }
+
+  /**
+   * Estimate fees per gas for EIP-1559 transactions
+   * @returns Estimated max fee and max priority fee per gas
+   */
+  async estimateFeesPerGas() {
+    return this.client.estimateFeesPerGas();
+  }
+
+  /**
+   * Get block information
+   * @param params - Block parameters (blockTag or blockNumber)
+   * @returns The block data
+   */
+  async getBlock(params: { blockTag?: 'latest'; blockNumber?: bigint }) {
+    return this.client.getBlock(params);
+  }
+
+  /**
+   * Get transaction information
+   * @param hash - The transaction hash
+   * @returns The transaction data
+   */
+  async getTransaction(hash: `0x${string}`) {
+    return this.client.getTransaction({ hash });
+  }
 }
