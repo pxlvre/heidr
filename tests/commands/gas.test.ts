@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 
 describe('Gas Command', () => {
   it('should get gas prices for arbitrum', () => {
-    const output = execSync('bun run cli/index.ts gas --chain arbitrum', {
+    const output = execSync('bun run cli/index.ts gas price --chain arbitrum', {
       encoding: 'utf-8',
     });
     expect(output).toContain('Gas Prices on Arbitrum One');
@@ -15,7 +15,7 @@ describe('Gas Command', () => {
   });
 
   it('should get gas price with --json flag', () => {
-    const output = execSync('bun run cli/index.ts gas --chain arbitrum --json', {
+    const output = execSync('bun run cli/index.ts gas price --chain arbitrum --json', {
       encoding: 'utf-8',
     });
     const result = JSON.parse(output);
@@ -33,7 +33,7 @@ describe('Gas Command', () => {
   });
 
   it('should get specific priority gas price', () => {
-    const output = execSync('bun run cli/index.ts gas average --chain polygon', {
+    const output = execSync('bun run cli/index.ts gas price average --chain polygon', {
       encoding: 'utf-8',
     });
     expect(output).toContain('Gas Price on Polygon (average)');
@@ -41,7 +41,7 @@ describe('Gas Command', () => {
   });
 
   it('should get low priority with JSON', () => {
-    const output = execSync('bun run cli/index.ts gas low --chain optimism --json', {
+    const output = execSync('bun run cli/index.ts gas price low --chain optimism --json', {
       encoding: 'utf-8',
     });
     const result = JSON.parse(output);
@@ -53,7 +53,7 @@ describe('Gas Command', () => {
   });
 
   it('should get gas prices for polygon', () => {
-    const output = execSync('bun run cli/index.ts gas --chain polygon', {
+    const output = execSync('bun run cli/index.ts gas price --chain polygon', {
       encoding: 'utf-8',
     });
     expect(output).toContain('Gas Prices on Polygon');
@@ -61,7 +61,7 @@ describe('Gas Command', () => {
   });
 
   it('should get gas prices for optimism', () => {
-    const output = execSync('bun run cli/index.ts gas --chain optimism', {
+    const output = execSync('bun run cli/index.ts gas price --chain optimism', {
       encoding: 'utf-8',
     });
     expect(output).toContain('Gas Prices on OP Mainnet');
@@ -70,7 +70,7 @@ describe('Gas Command', () => {
 
   it('should fail for invalid priority', () => {
     try {
-      execSync('bun run cli/index.ts gas invalid --chain arbitrum', {
+      execSync('bun run cli/index.ts gas price invalid --chain arbitrum', {
         encoding: 'utf-8',
       });
       expect(true).toBe(false); // Should not reach here
@@ -82,7 +82,50 @@ describe('Gas Command', () => {
 
   it('should fail for invalid chain', () => {
     try {
-      execSync('bun run cli/index.ts gas --chain invalid', {
+      execSync('bun run cli/index.ts gas price --chain invalid', {
+        encoding: 'utf-8',
+      });
+      expect(true).toBe(false); // Should not reach here
+    } catch (error: unknown) {
+      const err = error as { status: number };
+      expect(err.status).toBe(1);
+    }
+  });
+
+  it('should get gas cost for opcode by name', () => {
+    const output = execSync('bun run cli/index.ts gas code ADD', {
+      encoding: 'utf-8',
+    });
+    expect(output).toContain('Gas Cost for ADD');
+    expect(output).toContain('Minimum Gas');
+    expect(output).toContain('Stack Input');
+    expect(output).toContain('Stack Output');
+  });
+
+  it('should get gas cost for opcode by hex', () => {
+    const output = execSync('bun run cli/index.ts gas code 00', {
+      encoding: 'utf-8',
+    });
+    expect(output).toContain('Gas Cost for STOP');
+    expect(output).toContain('Minimum Gas');
+  });
+
+  it('should get gas cost for opcode with JSON', () => {
+    const output = execSync('bun run cli/index.ts gas code PUSH1 --json', {
+      encoding: 'utf-8',
+    });
+    const result = JSON.parse(output);
+    expect(result).toHaveProperty('opcode');
+    expect(result).toHaveProperty('name');
+    expect(result).toHaveProperty('minGas');
+    expect(result).toHaveProperty('input');
+    expect(result).toHaveProperty('output');
+    expect(result.name).toBe('PUSH1');
+  });
+
+  it('should fail for invalid opcode', () => {
+    try {
+      execSync('bun run cli/index.ts gas code INVALIDOPCODE', {
         encoding: 'utf-8',
       });
       expect(true).toBe(false); // Should not reach here

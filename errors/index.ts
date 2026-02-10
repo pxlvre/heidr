@@ -89,3 +89,17 @@ export class ApiError extends HeidrError {
     this.name = 'ApiError';
   }
 }
+
+/**
+ * Error thrown when a feature is not yet implemented
+ */
+export class NotImplementedError extends HeidrError {
+  /**
+   * Creates a new NotImplementedError
+   * @param message - Error message
+   */
+  constructor(message: string) {
+    super(message);
+    this.name = 'NotImplementedError';
+  }
+}

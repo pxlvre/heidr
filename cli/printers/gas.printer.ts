@@ -2,6 +2,42 @@ import Table from 'cli-table3';
 import chalk from 'chalk';
 import { formatGwei } from '@/utils/formatter';
 import type { GasPrices } from '@/services/rpc/gas.service';
+import type { Opcode } from '@/services/opcode.service';
+
+/**
+ * Print opcode gas cost as a table
+ */
+export const printOpcodeGasTable = (opcode: Opcode): void => {
+  const table = new Table({
+    head: [chalk.cyan('Property'), chalk.cyan('Value')],
+    colWidths: [20, 40],
+  });
+
+  table.push(
+    ['Opcode', chalk.yellow(opcode.hex)],
+    ['Name', chalk.green(opcode.name)],
+    ['Minimum Gas', chalk.magenta(opcode.minGas.toString())],
+    ['Stack Input', opcode.input || '-'],
+    ['Stack Output', opcode.output || '-']
+  );
+
+  console.log(`\n⛽ Gas Cost for ${chalk.bold(opcode.name)} (${opcode.hex})\n`);
+  console.log(table.toString());
+};
+
+/**
+ * Print opcode gas cost as JSON
+ */
+export const printOpcodeGasJson = (opcode: Opcode): void => {
+  const result = {
+    opcode: opcode.hex,
+    name: opcode.name,
+    minGas: opcode.minGas,
+    input: opcode.input,
+    output: opcode.output,
+  };
+  console.log(JSON.stringify(result, null, 2));
+};
 
 /**
  * Print all gas price priorities in a table

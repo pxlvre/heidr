@@ -102,9 +102,15 @@ heidr balance vitalik.eth --json
 
 ### `heidr gas`
 
+Gas-related utilities including prices, costs, and fee analysis.
+
+**Subcommands:**
+
+#### `heidr gas price`
+
 Get current gas prices for any supported chain with priority levels (low/average/high).
 
-**Usage:** `heidr gas [priority] [options]`
+**Usage:** `heidr gas price [priority] [options]`
 
 **Arguments:**
 
@@ -119,13 +125,13 @@ Get current gas prices for any supported chain with priority levels (low/average
 
 ```bash
 # Show all priority levels
-heidr gas
-heidr gas --chain arbitrum
+heidr gas price
+heidr gas price --chain arbitrum
 
 # Show specific priority level
-heidr gas low
-heidr gas average --chain optimism
-heidr gas high --chain polygon --json
+heidr gas price low
+heidr gas price average --chain optimism
+heidr gas price high --chain polygon --json
 ```
 
 **Priority Levels:**
@@ -133,6 +139,53 @@ heidr gas high --chain polygon --json
 - **Low** (25th percentile) - For non-urgent transactions
 - **Average** (50th percentile) - For normal transactions
 - **High** (75th percentile) - For urgent transactions
+
+#### `heidr gas cost`
+
+Estimate transaction cost (not yet implemented).
+
+#### `heidr gas code`
+
+Get gas costs for EVM opcodes.
+
+**Usage:** `heidr gas code <identifier> [options]`
+
+**Arguments:**
+
+- `<identifier>` - Opcode hex (e.g., 00, 0x01, FF) or name (e.g., STOP, ADD, PUSH1) - case insensitive
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+# Get gas cost by opcode name
+heidr gas code ADD
+heidr gas code PUSH1
+heidr gas code keccak256
+
+# Get gas cost by hex
+heidr gas code 00
+heidr gas code 0x01
+heidr gas code ff
+
+# JSON output
+heidr gas code ADD --json
+```
+
+**Information Displayed:**
+
+- Opcode hex value
+- Mnemonic name
+- Minimum gas cost
+- Stack input requirements
+- Stack output
+
+#### `heidr gas fee`
+
+Get detailed fee breakdown (not yet implemented).
 
 ---
 

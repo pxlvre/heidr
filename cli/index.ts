@@ -27,6 +27,9 @@ Examples:
   $ heidr block 12345 --chain polygon     Get block 12345 from Polygon
   $ heidr tx 0x123...                Get transaction info from Ethereum mainnet
   $ heidr tx 0x123... --chain arbitrum    Get transaction info from Arbitrum
+  $ heidr gas price                  Get current gas prices
+  $ heidr gas price low --chain optimism  Get low priority gas price
+  $ heidr gas code ADD               Get gas cost for ADD opcode
   $ heidr code                       List all EVM opcodes
   $ heidr code 00                    Get STOP opcode info
   $ heidr code ADD                   Get ADD opcode info
