@@ -16,7 +16,7 @@ const program = new Command();
 program
   .name('heidr')
   .description('EVM blockchain CLI tool')
-  .version('0.0.6', '-v, --version', 'Output the current version')
+  .version('0.0.7', '-v, --version', 'Output the current version')
   .addHelpText(
     'after',
     `

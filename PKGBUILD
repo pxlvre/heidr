@@ -1,6 +1,6 @@
 # Maintainer: pxlvre.eth <https://github.com/pxlvre>
 pkgname=heidr
-pkgver=0.0.6
+pkgver=0.0.7
 pkgrel=1
 pkgdesc="EVM blockchain CLI tool"
 arch=('x86_64')
