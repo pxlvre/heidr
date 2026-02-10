@@ -7,6 +7,7 @@ import { balanceCommand } from '@/cli/commands/balance';
 import { blockCommand } from '@/cli/commands/block';
 import { chainsCommand } from '@/cli/commands/chains';
 import { codeCommand } from '@/cli/commands/code';
+import { configCommand } from '@/cli/commands/config';
 import { gasCommand } from '@/cli/commands/gas';
 import { txCommand } from '@/cli/commands/tx';
 
@@ -43,6 +44,7 @@ program.addCommand(balanceCommand);
 program.addCommand(blockCommand);
 program.addCommand(chainsCommand);
 program.addCommand(codeCommand);
+program.addCommand(configCommand);
 program.addCommand(gasCommand);
 program.addCommand(txCommand);
 
