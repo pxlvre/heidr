@@ -29,6 +29,7 @@
   "files": [
     "cli",
     "config",
+    "data",
     "errors",
     "providers",
     "services",

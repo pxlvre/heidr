@@ -7,11 +7,11 @@
  * heidr tx 0x123... --json
  */
 import { Command } from 'commander';
-import Table from 'cli-table3';
-import { createPublicClient, http } from 'viem';
-import { getChain } from '../../config/chains.js';
-import { prettyPrint, printError } from '../../utils/formatter.js';
-import { ensureHex } from '../../utils/hex.js';
+import { RpcProvider } from '@/providers/rpc.provider';
+import { getChain } from '@/config/chains';
+import { TransactionService } from '@/services/rpc/transaction.service';
+import { printTransactionTable, printTransactionJson } from '@/cli/printers/transaction.printer';
+import { printError } from '@/utils/formatter';
 
 export const txCommand = new Command('tx')
   .description('Get transaction information')
@@ -20,39 +20,26 @@ export const txCommand = new Command('tx')
   .option('--json', 'Output as JSON')
   .action(async (hash: string, options) => {
     try {
+      // Get chain configuration
       const chain = getChain(options.chain);
+      const rpcUrl = chain.rpcUrls.default.http[0];
 
-      const client = createPublicClient({
-        chain,
-        transport: http(),
-      });
+      if (!rpcUrl) {
+        throw new Error(`No RPC URL available for chain: ${chain.name}`);
+      }
 
-      const txHash = ensureHex(hash);
-      const tx = await client.getTransaction({ hash: txHash });
+      // Initialize provider and service
+      const provider = new RpcProvider(rpcUrl, chain);
+      const transactionService = new TransactionService(provider);
 
+      // Get transaction
+      const tx = await transactionService.getTransaction(hash);
+
+      // Print output
       if (options.json) {
-        prettyPrint(tx);
+        printTransactionJson(tx);
       } else {
-        // Pretty table format
-        const table = new Table({
-          style: { head: ['cyan'] },
-        });
-
-        table.push(
-          ['Hash', tx.hash],
-          ['From', tx.from],
-          ['To', tx.to || 'Contract Creation'],
-          ['Value', `${tx.value.toString()} wei`],
-          ['Gas', tx.gas.toString()],
-          ['Gas Price', tx.gasPrice?.toString() || 'N/A'],
-          ['Nonce', tx.nonce.toString()],
-          ['Block Number', tx.blockNumber?.toString() || 'Pending'],
-          ['Block Hash', tx.blockHash || 'Pending'],
-          ['Transaction Index', tx.transactionIndex?.toString() || 'Pending'],
-          ['Type', tx.type]
-        );
-
-        console.log(table.toString());
+        printTransactionTable(tx);
       }
     } catch (error) {
       printError(error instanceof Error ? error.message : 'Unknown error occurred');

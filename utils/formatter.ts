@@ -1,4 +1,23 @@
 import chalk from 'chalk';
+import { formatEther as viemFormatEther, formatGwei as viemFormatGwei } from 'viem';
+
+/**
+ * Format wei to ether
+ * @param wei - Amount in wei
+ * @returns Formatted ether string
+ */
+export const formatEther = (wei: bigint): string => {
+  return viemFormatEther(wei);
+};
+
+/**
+ * Format wei to gwei
+ * @param wei - Amount in wei
+ * @returns Formatted gwei string
+ */
+export const formatGwei = (wei: bigint): string => {
+  return viemFormatGwei(wei);
+};
 
 /**
  * Pretty prints JSON with syntax highlighting

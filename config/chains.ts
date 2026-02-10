@@ -1,6 +1,6 @@
 import type { Chain } from 'viem';
 import * as chains from 'viem/chains';
-import { ConfigurationError } from '../errors';
+import { ConfigurationError } from '@/errors';
 
 /**
  * All supported chains from viem

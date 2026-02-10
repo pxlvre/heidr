@@ -1,0 +1,1052 @@
+{
+  "10": {
+    "name": "LT",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a < b",
+    "description": "Less-than comparison"
+  },
+  "11": {
+    "name": "GT",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a > b",
+    "description": "Greater-than comparison"
+  },
+  "12": {
+    "name": "SLT",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a < b",
+    "description": "Signed less-than comparison"
+  },
+  "13": {
+    "name": "SGT",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a > b",
+    "description": "Signed greater-than comparison"
+  },
+  "14": {
+    "name": "EQ",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a == b",
+    "description": "Equality comparison"
+  },
+  "15": {
+    "name": "ISZERO",
+    "minGas": 3,
+    "input": "a",
+    "output": "a == 0",
+    "description": "Is-zero comparison"
+  },
+  "16": {
+    "name": "AND",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a & b",
+    "description": "Bitwise AND operation"
+  },
+  "17": {
+    "name": "OR",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a \\| b",
+    "description": "Bitwise OR operation"
+  },
+  "18": {
+    "name": "XOR",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a ^ b",
+    "description": "Bitwise XOR operation"
+  },
+  "19": {
+    "name": "NOT",
+    "minGas": 3,
+    "input": "a",
+    "output": "~a",
+    "description": "Bitwise NOT operation"
+  },
+  "20": {
+    "name": "KECCAK256",
+    "minGas": 30,
+    "input": "offset | size",
+    "output": "hash",
+    "description": "Compute Keccak-256 hash"
+  },
+  "30": {
+    "name": "ADDRESS",
+    "minGas": 2,
+    "input": "",
+    "output": "address",
+    "description": "Get address of currently executing account"
+  },
+  "31": {
+    "name": "BALANCE",
+    "minGas": 100,
+    "input": "address",
+    "output": "balance",
+    "description": "Get balance of the given account"
+  },
+  "32": {
+    "name": "ORIGIN",
+    "minGas": 2,
+    "input": "",
+    "output": "address",
+    "description": "Get execution origination address"
+  },
+  "33": {
+    "name": "CALLER",
+    "minGas": 2,
+    "input": "",
+    "output": "address",
+    "description": "Get caller address"
+  },
+  "34": {
+    "name": "CALLVALUE",
+    "minGas": 2,
+    "input": "",
+    "output": "value",
+    "description": "Get deposited value by the instruction/transaction responsible for this execution"
+  },
+  "35": {
+    "name": "CALLDATALOAD",
+    "minGas": 3,
+    "input": "i",
+    "output": "data[i]",
+    "description": "Get input data of current environment"
+  },
+  "36": {
+    "name": "CALLDATASIZE",
+    "minGas": 2,
+    "input": "",
+    "output": "size",
+    "description": "Get size of input data in current environment"
+  },
+  "37": {
+    "name": "CALLDATACOPY",
+    "minGas": 3,
+    "input": "destOffset | offset | size",
+    "output": "",
+    "description": "Copy input data in current environment to memory"
+  },
+  "38": {
+    "name": "CODESIZE",
+    "minGas": 2,
+    "input": "",
+    "output": "size",
+    "description": "Get size of code running in current environment"
+  },
+  "39": {
+    "name": "CODECOPY",
+    "minGas": 3,
+    "input": "destOffset | offset | size",
+    "output": "",
+    "description": "Copy code running in current environment to memory"
+  },
+  "40": {
+    "name": "BLOCKHASH",
+    "minGas": 20,
+    "input": "blockNumber",
+    "output": "hash",
+    "description": "Get the hash of one of the 256 most recent complete blocks"
+  },
+  "41": {
+    "name": "COINBASE",
+    "minGas": 2,
+    "input": "",
+    "output": "address",
+    "description": "Get the block’s beneficiary address"
+  },
+  "42": {
+    "name": "TIMESTAMP",
+    "minGas": 2,
+    "input": "",
+    "output": "timestamp",
+    "description": "Get the block’s timestamp"
+  },
+  "43": {
+    "name": "NUMBER",
+    "minGas": 2,
+    "input": "",
+    "output": "blockNumber",
+    "description": "Get the block’s number"
+  },
+  "44": {
+    "name": "DIFFICULTY",
+    "minGas": 2,
+    "input": "",
+    "output": "difficulty",
+    "description": "Get the block’s difficulty"
+  },
+  "45": {
+    "name": "GASLIMIT",
+    "minGas": 2,
+    "input": "",
+    "output": "gasLimit",
+    "description": "Get the block’s gas limit"
+  },
+  "46": {
+    "name": "CHAINID",
+    "minGas": 2,
+    "input": "",
+    "output": "chainId",
+    "description": "Get the chain ID"
+  },
+  "47": {
+    "name": "SELFBALANCE",
+    "minGas": 5,
+    "input": "",
+    "output": "balance",
+    "description": "Get balance of currently executing account"
+  },
+  "48": {
+    "name": "BASEFEE",
+    "minGas": 2,
+    "input": "",
+    "output": "baseFee",
+    "description": "Get the base fee"
+  },
+  "49": {
+    "name": "BLOBHASH",
+    "minGas": 3,
+    "input": "index",
+    "output": "blobVersionedHashesAtIndex",
+    "description": "Get versioned hashes"
+  },
+  "50": {
+    "name": "POP",
+    "minGas": 2,
+    "input": "y",
+    "output": "",
+    "description": "Remove item from stack"
+  },
+  "51": {
+    "name": "MLOAD",
+    "minGas": 3,
+    "input": "offset",
+    "output": "value",
+    "description": "Load word from memory"
+  },
+  "52": {
+    "name": "MSTORE",
+    "minGas": 3,
+    "input": "offset | value",
+    "output": "",
+    "description": "Save word to memory"
+  },
+  "53": {
+    "name": "MSTORE8",
+    "minGas": 3,
+    "input": "offset | value",
+    "output": "",
+    "description": "Save byte to memory"
+  },
+  "54": {
+    "name": "SLOAD",
+    "minGas": 100,
+    "input": "key",
+    "output": "value",
+    "description": "Load word from storage"
+  },
+  "55": {
+    "name": "SSTORE",
+    "minGas": 100,
+    "input": "key | value",
+    "output": "",
+    "description": "Save word to storage"
+  },
+  "56": {
+    "name": "JUMP",
+    "minGas": 8,
+    "input": "counter",
+    "output": "",
+    "description": "Alter the program counter"
+  },
+  "57": {
+    "name": "JUMPI",
+    "minGas": 10,
+    "input": "counter | b",
+    "output": "",
+    "description": "Conditionally alter the program counter"
+  },
+  "58": {
+    "name": "PC",
+    "minGas": 2,
+    "input": "",
+    "output": "counter",
+    "description": "Get the value of the program counter prior to the increment corresponding to this instruction"
+  },
+  "59": {
+    "name": "MSIZE",
+    "minGas": 2,
+    "input": "",
+    "output": "size",
+    "description": "Get the size of active memory in bytes"
+  },
+  "60": {
+    "name": "PUSH1",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 1 byte item on stack"
+  },
+  "61": {
+    "name": "PUSH2",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 2 byte item on stack"
+  },
+  "62": {
+    "name": "PUSH3",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 3 byte item on stack"
+  },
+  "63": {
+    "name": "PUSH4",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 4 byte item on stack"
+  },
+  "64": {
+    "name": "PUSH5",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 5 byte item on stack"
+  },
+  "65": {
+    "name": "PUSH6",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 6 byte item on stack"
+  },
+  "66": {
+    "name": "PUSH7",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 7 byte item on stack"
+  },
+  "67": {
+    "name": "PUSH8",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 8 byte item on stack"
+  },
+  "68": {
+    "name": "PUSH9",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 9 byte item on stack"
+  },
+  "69": {
+    "name": "PUSH10",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 10 byte item on stack"
+  },
+  "70": {
+    "name": "PUSH17",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 17 byte item on stack"
+  },
+  "71": {
+    "name": "PUSH18",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 18 byte item on stack"
+  },
+  "72": {
+    "name": "PUSH19",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 19 byte item on stack"
+  },
+  "73": {
+    "name": "PUSH20",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 20 byte item on stack"
+  },
+  "74": {
+    "name": "PUSH21",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 21 byte item on stack"
+  },
+  "75": {
+    "name": "PUSH22",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 22 byte item on stack"
+  },
+  "76": {
+    "name": "PUSH23",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 23 byte item on stack"
+  },
+  "77": {
+    "name": "PUSH24",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 24 byte item on stack"
+  },
+  "78": {
+    "name": "PUSH25",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 25 byte item on stack"
+  },
+  "79": {
+    "name": "PUSH26",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 26 byte item on stack"
+  },
+  "80": {
+    "name": "DUP1",
+    "minGas": 3,
+    "input": "value",
+    "output": "value | value",
+    "description": "Duplicate 1st stack item"
+  },
+  "81": {
+    "name": "DUP2",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "b | a | b",
+    "description": "Duplicate 2nd stack item"
+  },
+  "82": {
+    "name": "DUP3",
+    "minGas": 3,
+    "input": "a | b | c",
+    "output": "c | a | b | c",
+    "description": "Duplicate 3rd stack item"
+  },
+  "83": {
+    "name": "DUP4",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 4th stack item"
+  },
+  "84": {
+    "name": "DUP5",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 5th stack item"
+  },
+  "85": {
+    "name": "DUP6",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 6th stack item"
+  },
+  "86": {
+    "name": "DUP7",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 7th stack item"
+  },
+  "87": {
+    "name": "DUP8",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 8th stack item"
+  },
+  "88": {
+    "name": "DUP9",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 9th stack item"
+  },
+  "89": {
+    "name": "DUP10",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 10th stack item"
+  },
+  "90": {
+    "name": "SWAP1",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "b | a",
+    "description": "Exchange 1st and 2nd stack items"
+  },
+  "91": {
+    "name": "SWAP2",
+    "minGas": 3,
+    "input": "a | b | c",
+    "output": "c | b | a",
+    "description": "Exchange 1st and 3rd stack items"
+  },
+  "92": {
+    "name": "SWAP3",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 4th stack items"
+  },
+  "93": {
+    "name": "SWAP4",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 5th stack items"
+  },
+  "94": {
+    "name": "SWAP5",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 6th stack items"
+  },
+  "95": {
+    "name": "SWAP6",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 7th stack items"
+  },
+  "96": {
+    "name": "SWAP7",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 8th stack items"
+  },
+  "97": {
+    "name": "SWAP8",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 9th stack items"
+  },
+  "98": {
+    "name": "SWAP9",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 10th stack items"
+  },
+  "99": {
+    "name": "SWAP10",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 11th stack items"
+  },
+  "00": {
+    "name": "STOP",
+    "minGas": 0,
+    "input": "",
+    "output": "",
+    "description": "Halts execution"
+  },
+  "01": {
+    "name": "ADD",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a + b",
+    "description": "Addition operation"
+  },
+  "02": {
+    "name": "MUL",
+    "minGas": 5,
+    "input": "a | b",
+    "output": "a * b",
+    "description": "Multiplication operation"
+  },
+  "03": {
+    "name": "SUB",
+    "minGas": 3,
+    "input": "a | b",
+    "output": "a - b",
+    "description": "Subtraction operation"
+  },
+  "04": {
+    "name": "DIV",
+    "minGas": 5,
+    "input": "a | b",
+    "output": "a // b",
+    "description": "Integer division operation"
+  },
+  "05": {
+    "name": "SDIV",
+    "minGas": 5,
+    "input": "a | b",
+    "output": "a // b",
+    "description": "Signed integer division operation (truncated)"
+  },
+  "06": {
+    "name": "MOD",
+    "minGas": 5,
+    "input": "a | b",
+    "output": "a % b",
+    "description": "Modulo remainder operation"
+  },
+  "07": {
+    "name": "SMOD",
+    "minGas": 5,
+    "input": "a | b",
+    "output": "a % b",
+    "description": "Signed modulo remainder operation"
+  },
+  "08": {
+    "name": "ADDMOD",
+    "minGas": 8,
+    "input": "a | b | N",
+    "output": "(a + b) % N",
+    "description": "Modulo addition operation"
+  },
+  "09": {
+    "name": "MULMOD",
+    "minGas": 8,
+    "input": "a | b | N",
+    "output": "(a * b) % N",
+    "description": "Modulo multiplication operation"
+  },
+  "0a": {
+    "name": "EXP",
+    "minGas": 10,
+    "input": "a | exponent",
+    "output": "a ** exponent",
+    "description": "Exponential operation"
+  },
+  "0b": {
+    "name": "SIGNEXTEND",
+    "minGas": 5,
+    "input": "b | x",
+    "output": "y",
+    "description": "Extend length of two’s complement signed integer"
+  },
+  "1a": {
+    "name": "BYTE",
+    "minGas": 3,
+    "input": "i | x",
+    "output": "y",
+    "description": "Retrieve single byte from word"
+  },
+  "1b": {
+    "name": "SHL",
+    "minGas": 3,
+    "input": "shift | value",
+    "output": "value << shift",
+    "description": "Left shift operation"
+  },
+  "1c": {
+    "name": "SHR",
+    "minGas": 3,
+    "input": "shift | value",
+    "output": "value >> shift",
+    "description": "Logical right shift operation"
+  },
+  "1d": {
+    "name": "SAR",
+    "minGas": 3,
+    "input": "shift | value",
+    "output": "value >> shift",
+    "description": "Arithmetic (signed) right shift operation"
+  },
+  "1e": {
+    "name": "CLZ",
+    "minGas": 3,
+    "input": "x",
+    "output": "clz(x)",
+    "description": "Count leading zero bits"
+  },
+  "3a": {
+    "name": "GASPRICE",
+    "minGas": 2,
+    "input": "",
+    "output": "price",
+    "description": "Get price of gas in current environment"
+  },
+  "3b": {
+    "name": "EXTCODESIZE",
+    "minGas": 100,
+    "input": "address",
+    "output": "size",
+    "description": "Get size of an account’s code"
+  },
+  "3c": {
+    "name": "EXTCODECOPY",
+    "minGas": 100,
+    "input": "address | destOffset | offset | size",
+    "output": "",
+    "description": "Copy an account’s code to memory"
+  },
+  "3d": {
+    "name": "RETURNDATASIZE",
+    "minGas": 2,
+    "input": "",
+    "output": "size",
+    "description": "Get size of output data from the previous call from the current environment"
+  },
+  "3e": {
+    "name": "RETURNDATACOPY",
+    "minGas": 3,
+    "input": "destOffset | offset | size",
+    "output": "",
+    "description": "Copy output data from the previous call to memory"
+  },
+  "3f": {
+    "name": "EXTCODEHASH",
+    "minGas": 100,
+    "input": "address",
+    "output": "hash",
+    "description": "Get hash of an account’s code"
+  },
+  "4a": {
+    "name": "BLOBBASEFEE",
+    "minGas": 2,
+    "input": "",
+    "output": "blobBaseFee",
+    "description": "Returns the value of the blob base-fee of the current block"
+  },
+  "5a": {
+    "name": "GAS",
+    "minGas": 2,
+    "input": "",
+    "output": "gas",
+    "description": "Get the amount of available gas, including the corresponding reduction for the cost of this instruction"
+  },
+  "5b": {
+    "name": "JUMPDEST",
+    "minGas": 1,
+    "input": "",
+    "output": "",
+    "description": "Mark a valid destination for jumps"
+  },
+  "5c": {
+    "name": "TLOAD",
+    "minGas": 100,
+    "input": "key",
+    "output": "value",
+    "description": "Load word from transient storage"
+  },
+  "5d": {
+    "name": "TSTORE",
+    "minGas": 100,
+    "input": "key | value",
+    "output": "",
+    "description": "Save word to transient storage"
+  },
+  "5e": {
+    "name": "MCOPY",
+    "minGas": 3,
+    "input": "destOffset | offset | size",
+    "output": "",
+    "description": "Copy memory areas"
+  },
+  "5f": {
+    "name": "PUSH0",
+    "minGas": 2,
+    "input": "",
+    "output": "0",
+    "description": "Place value 0 on stack"
+  },
+  "6a": {
+    "name": "PUSH11",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 11 byte item on stack"
+  },
+  "6b": {
+    "name": "PUSH12",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 12 byte item on stack"
+  },
+  "6c": {
+    "name": "PUSH13",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 13 byte item on stack"
+  },
+  "6d": {
+    "name": "PUSH14",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 14 byte item on stack"
+  },
+  "6e": {
+    "name": "PUSH15",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 15 byte item on stack"
+  },
+  "6f": {
+    "name": "PUSH16",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 16 byte item on stack"
+  },
+  "7a": {
+    "name": "PUSH27",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 27 byte item on stack"
+  },
+  "7b": {
+    "name": "PUSH28",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 28 byte item on stack"
+  },
+  "7c": {
+    "name": "PUSH29",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 29 byte item on stack"
+  },
+  "7d": {
+    "name": "PUSH30",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 30 byte item on stack"
+  },
+  "7e": {
+    "name": "PUSH31",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 31 byte item on stack"
+  },
+  "7f": {
+    "name": "PUSH32",
+    "minGas": 3,
+    "input": "",
+    "output": "value",
+    "description": "Place 32 byte (full word) item on stack"
+  },
+  "8a": {
+    "name": "DUP11",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 11th stack item"
+  },
+  "8b": {
+    "name": "DUP12",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 12th stack item"
+  },
+  "8c": {
+    "name": "DUP13",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 13th stack item"
+  },
+  "8d": {
+    "name": "DUP14",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 14th stack item"
+  },
+  "8e": {
+    "name": "DUP15",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 15th stack item"
+  },
+  "8f": {
+    "name": "DUP16",
+    "minGas": 3,
+    "input": "... | value",
+    "output": "value | ... | value",
+    "description": "Duplicate 16th stack item"
+  },
+  "9a": {
+    "name": "SWAP11",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 12th stack items"
+  },
+  "9b": {
+    "name": "SWAP12",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 13th stack items"
+  },
+  "9c": {
+    "name": "SWAP13",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 14th stack items"
+  },
+  "9d": {
+    "name": "SWAP14",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 15th stack items"
+  },
+  "9e": {
+    "name": "SWAP15",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 16th stack items"
+  },
+  "9f": {
+    "name": "SWAP16",
+    "minGas": 3,
+    "input": "a | ... | b",
+    "output": "b | ... | a",
+    "description": "Exchange 1st and 17th stack items"
+  },
+  "a0": {
+    "name": "LOG0",
+    "minGas": 375,
+    "input": "offset | size",
+    "output": "",
+    "description": "Append log record with no topics"
+  },
+  "a1": {
+    "name": "LOG1",
+    "minGas": 750,
+    "input": "offset | size | topic",
+    "output": "",
+    "description": "Append log record with one topic"
+  },
+  "a2": {
+    "name": "LOG2",
+    "minGas": 1125,
+    "input": "offset | size | topic1 | topic2",
+    "output": "",
+    "description": "Append log record with two topics"
+  },
+  "a3": {
+    "name": "LOG3",
+    "minGas": 1500,
+    "input": "offset | size | topic1 | topic2 | topic3",
+    "output": "",
+    "description": "Append log record with three topics"
+  },
+  "a4": {
+    "name": "LOG4",
+    "minGas": 1875,
+    "input": "offset | size | topic1 | topic2 | topic3 | topic4",
+    "output": "",
+    "description": "Append log record with four topics"
+  },
+  "f0": {
+    "name": "CREATE",
+    "minGas": 32000,
+    "input": "value | offset | size",
+    "output": "address",
+    "description": "Create a new account with associated code"
+  },
+  "f1": {
+    "name": "CALL",
+    "minGas": 100,
+    "input": "gas | address | value | argsOffset | argsSize | retOffset | retSize",
+    "output": "success",
+    "description": "Message-call into an account"
+  },
+  "f2": {
+    "name": "CALLCODE",
+    "minGas": 100,
+    "input": "gas | address | value | argsOffset | argsSize | retOffset | retSize",
+    "output": "success",
+    "description": "Message-call into this account with alternative account’s code"
+  },
+  "f3": {
+    "name": "RETURN",
+    "minGas": 0,
+    "input": "offset | size",
+    "output": "",
+    "description": "Halt execution returning output data"
+  },
+  "f4": {
+    "name": "DELEGATECALL",
+    "minGas": 100,
+    "input": "gas | address | argsOffset | argsSize | retOffset | retSize",
+    "output": "success",
+    "description": "Message-call into this account with an alternative account’s code, but persisting the current values for sender and value"
+  },
+  "f5": {
+    "name": "CREATE2",
+    "minGas": 32000,
+    "input": "value | offset | size | salt",
+    "output": "address",
+    "description": "Create a new account with associated code at a predictable address"
+  },
+  "fa": {
+    "name": "STATICCALL",
+    "minGas": 100,
+    "input": "gas | address | argsOffset | argsSize | retOffset | retSize",
+    "output": "success",
+    "description": "Static message-call into an account"
+  },
+  "fd": {
+    "name": "REVERT",
+    "minGas": 0,
+    "input": "offset | size",
+    "output": "",
+    "description": "Halt execution reverting state changes but returning data and remaining gas"
+  },
+  "fe": {
+    "name": "INVALID",
+    "minGas": 0,
+    "input": "",
+    "output": "",
+    "description": "Designated invalid instruction"
+  },
+  "ff": {
+    "name": "SELFDESTRUCT",
+    "minGas": 5000,
+    "input": "address",
+    "output": "",
+    "description": "Halt execution and register account for later deletion or send all Ether to address (post-Cancun)"
+  }
+}
