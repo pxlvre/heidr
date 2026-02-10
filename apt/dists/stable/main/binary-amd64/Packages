@@ -1,14 +1,14 @@
 Package: heidr
-Version: 0.0.6
+Version: 0.0.7
 Architecture: amd64
 Maintainer: pxlvre.eth <https://github.com/pxlvre>
-Installed-Size: 101183
+Installed-Size: 101250
 Recommends: ca-certificates
-Filename: pool/main/heidr_0.0.6_amd64.deb
-Size: 40175166
-MD5sum: 7350245f46b66ca80846f18e48fc5ab0
-SHA1: 3d2ed6f6c6150d10fd2e7f7f902bc39f0d2faca2
-SHA256: 89be0350bd0956fafe94443342f51412ea85ccae3983890b97ccfd153523c7e1
+Filename: pool/main/heidr_0.0.7_amd64.deb
+Size: 40187678
+MD5sum: dafd53ae37c85e51851bc1a1ce0246c2
+SHA1: 1553e272c7734b7d77ae61520729a0e8011a45ab
+SHA256: 3f46465efe14f717e5d1efa199eff0b642b8a7fb19f5231c157203a20393a51b
 Section: utils
 Priority: optional
 Homepage: https://github.com/pxlvre/heidr
