@@ -12,6 +12,7 @@ import { gasCommand } from '@/cli/commands/gas';
 import { txCommand } from '@/cli/commands/tx';
 import { defiLlamaCommand } from '@/cli/commands/defillama/index';
 import { l2beatCommand } from '@/cli/commands/l2beat/index';
+import { rpcCommand } from '@/cli/commands/rpc/index';
 
 const program = new Command();
 
@@ -50,6 +51,7 @@ program.addCommand(configCommand);
 program.addCommand(gasCommand);
 program.addCommand(defiLlamaCommand);
 program.addCommand(l2beatCommand);
+program.addCommand(rpcCommand);
 program.addCommand(txCommand);
 
 program.parse();

@@ -1,5 +1,47 @@
 import type { RpcProvider } from '@/providers/rpc.provider';
 import { getChain } from '@/config/chains';
+import { formatUnits } from 'viem';
+
+const erc20Abi = [
+  {
+    type: 'function',
+    name: 'balanceOf',
+    stateMutability: 'view',
+    inputs: [{ name: 'account', type: 'address' }],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    type: 'function',
+    name: 'decimals',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'uint8' }],
+  },
+  {
+    type: 'function',
+    name: 'symbol',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'string' }],
+  },
+  {
+    type: 'function',
+    name: 'name',
+    stateMutability: 'view',
+    inputs: [],
+    outputs: [{ name: '', type: 'string' }],
+  },
+] as const;
+
+export interface TokenBalanceResult {
+  address: `0x${string}`;
+  tokenAddress: `0x${string}`;
+  tokenName: string;
+  tokenSymbol: string;
+  tokenDecimals: number;
+  rawBalance: bigint;
+  formattedBalance: string;
+}
 
 export interface BalanceResult {
   address: `0x${string}`;
@@ -57,6 +99,45 @@ export class BalanceService {
       address,
       balance,
       ensName,
+    };
+  }
+
+  async getTokenBalance(walletAddress: string, tokenAddress: string): Promise<TokenBalanceResult> {
+    const wallet = walletAddress as `0x${string}`;
+    const token = tokenAddress as `0x${string}`;
+
+    const [rawBalance, decimals, symbol, name] = await Promise.all([
+      this.provider.readContract({
+        address: token,
+        abi: erc20Abi,
+        functionName: 'balanceOf',
+        args: [wallet],
+      }) as Promise<bigint>,
+      this.provider.readContract({
+        address: token,
+        abi: erc20Abi,
+        functionName: 'decimals',
+      }) as Promise<number>,
+      this.provider.readContract({
+        address: token,
+        abi: erc20Abi,
+        functionName: 'symbol',
+      }) as Promise<string>,
+      this.provider.readContract({
+        address: token,
+        abi: erc20Abi,
+        functionName: 'name',
+      }) as Promise<string>,
+    ]);
+
+    return {
+      address: wallet,
+      tokenAddress: token,
+      tokenName: name,
+      tokenSymbol: symbol,
+      tokenDecimals: decimals,
+      rawBalance,
+      formattedBalance: formatUnits(rawBalance, decimals),
     };
   }
 }
