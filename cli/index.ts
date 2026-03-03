@@ -10,6 +10,7 @@ import { codeCommand } from '@/cli/commands/code';
 import { configCommand } from '@/cli/commands/config';
 import { gasCommand } from '@/cli/commands/gas';
 import { txCommand } from '@/cli/commands/tx';
+import { l2beatCommand } from '@/cli/commands/l2beat/index';
 
 const program = new Command();
 
@@ -46,6 +47,7 @@ program.addCommand(chainsCommand);
 program.addCommand(codeCommand);
 program.addCommand(configCommand);
 program.addCommand(gasCommand);
+program.addCommand(l2beatCommand);
 program.addCommand(txCommand);
 
 program.parse();
