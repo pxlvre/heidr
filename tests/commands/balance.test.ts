@@ -13,15 +13,15 @@ describe('Balance Command Tests', () => {
       expect(output).toContain('Balance');
     });
 
-    it('should get balance for an address on polygon', () => {
+    it('should get balance for an address on optimism', () => {
       const result = execSync(
-        'bun run cli/index.ts balance 0x0000000000000000000000000000000000000001 --chain polygon --json',
+        'bun run cli/index.ts balance 0x0000000000000000000000000000000000000001 --chain optimism --json',
         { encoding: 'utf-8' }
       );
       const data = JSON.parse(result);
       expect(data).toHaveProperty('address');
       expect(data).toHaveProperty('balance');
-      expect(data.chain).toBe('Polygon');
+      expect(data.chain).toBe('OP Mainnet');
     });
 
     it('should handle address with uppercase letters', () => {

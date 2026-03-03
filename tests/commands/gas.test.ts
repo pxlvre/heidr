@@ -33,10 +33,10 @@ describe('Gas Command', () => {
   });
 
   it('should get specific priority gas price', () => {
-    const output = execSync('bun run cli/index.ts gas price average --chain polygon', {
+    const output = execSync('bun run cli/index.ts gas price average --chain optimism', {
       encoding: 'utf-8',
     });
-    expect(output).toContain('Gas Price on Polygon (average)');
+    expect(output).toContain('Gas Price on OP Mainnet (average)');
     expect(output).toContain('gwei');
   });
 
@@ -52,11 +52,11 @@ describe('Gas Command', () => {
     expect(result.gasPrice).toHaveProperty('gwei');
   });
 
-  it('should get gas prices for polygon', () => {
-    const output = execSync('bun run cli/index.ts gas price --chain polygon', {
+  it('should get gas prices for base', () => {
+    const output = execSync('bun run cli/index.ts gas price --chain base', {
       encoding: 'utf-8',
     });
-    expect(output).toContain('Gas Prices on Polygon');
+    expect(output).toContain('Gas Prices on Base');
     expect(output).toContain('gwei');
   });
 
