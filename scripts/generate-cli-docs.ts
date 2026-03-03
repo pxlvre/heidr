@@ -114,6 +114,261 @@ heidr gas --chain optimism --json
 
 ---
 
+### \`heidr l2beat\`
+
+L2Beat analytics — scaling projects, TVS, and transaction activity.
+
+**Subcommands:**
+
+#### \`heidr l2beat activity\`
+
+Get aggregate transaction activity across all L2s (last 30 days).
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr l2beat activity
+heidr l2beat activity --json
+\`\`\`
+
+#### \`heidr l2beat project <slug>\`
+
+Get details for a specific L2Beat project.
+
+**Usage:** \`heidr l2beat project <slug> [options]\`
+
+**Arguments:**
+- \`<slug>\` - Project slug (e.g. arbitrum, optimism, base)
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr l2beat project arbitrum
+heidr l2beat project optimism --json
+heidr l2beat project base
+\`\`\`
+
+#### \`heidr l2beat scaling\`
+
+List all L2Beat scaling projects.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr l2beat scaling
+heidr l2beat scaling --json
+\`\`\`
+
+#### \`heidr l2beat tvs\`
+
+Get aggregate Total Value Secured (TVS) across all L2s.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr l2beat tvs
+heidr l2beat tvs --json
+\`\`\`
+
+---
+
+### \`heidr defillama\`
+
+DefiLLama DeFi analytics — TVL, prices, yields, DEX volumes, fees, bridges, hacks.
+
+**Subcommands:**
+
+#### \`heidr defillama bridges\`
+
+List cross-chain bridges by 24h volume.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama bridges
+heidr defillama bridges --json
+\`\`\`
+
+#### \`heidr defillama chain <name>\`
+
+Get historical TVL for a specific chain.
+
+**Usage:** \`heidr defillama chain <name> [options]\`
+
+**Arguments:**
+- \`<name>\` - Chain name (e.g. Ethereum, Arbitrum, Base)
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama chain Ethereum
+heidr defillama chain Arbitrum --json
+heidr defillama chain Base
+\`\`\`
+
+#### \`heidr defillama chains\`
+
+List all chains with current TVL.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama chains
+heidr defillama chains --json
+\`\`\`
+
+#### \`heidr defillama dexs\`
+
+Get aggregate DEX volume overview.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama dexs
+heidr defillama dexs --json
+\`\`\`
+
+#### \`heidr defillama fees\`
+
+Get aggregate protocol fees & revenue overview.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama fees
+heidr defillama fees --json
+\`\`\`
+
+#### \`heidr defillama hacks\`
+
+List historical DeFi hacks and exploits.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama hacks
+heidr defillama hacks --json
+\`\`\`
+
+#### \`heidr defillama pools\`
+
+List top yield farming pools by TVL.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama pools
+heidr defillama pools --json
+\`\`\`
+
+#### \`heidr defillama price <coins...>\`
+
+Get current or historical token prices.
+
+**Usage:** \`heidr defillama price <coins...> [options]\`
+
+**Arguments:**
+- \`<coins...>\` - One or more coin IDs (e.g. \`coingecko:ethereum\`, \`ethereum:0xA0b8...\`)
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+- \`--at <timestamp>\` - Unix timestamp for historical price lookup
+
+**Examples:**
+\`\`\`bash
+heidr defillama price coingecko:ethereum
+heidr defillama price coingecko:bitcoin coingecko:ethereum
+heidr defillama price coingecko:ethereum --at 1700000000
+heidr defillama price coingecko:ethereum --json
+\`\`\`
+
+#### \`heidr defillama protocol <slug>\`
+
+Get TVL history and chain breakdown for a protocol.
+
+**Usage:** \`heidr defillama protocol <slug> [options]\`
+
+**Arguments:**
+- \`<slug>\` - Protocol slug (e.g. uniswap, aave, compound)
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama protocol uniswap
+heidr defillama protocol aave --json
+heidr defillama protocol compound
+\`\`\`
+
+#### \`heidr defillama protocols\`
+
+List all DeFi protocols with TVL (top 50 by default).
+
+**Options:**
+- \`-j, --json\` - Output as JSON (all protocols)
+
+**Examples:**
+\`\`\`bash
+heidr defillama protocols
+heidr defillama protocols --json
+\`\`\`
+
+#### \`heidr defillama stablecoins\`
+
+List stablecoins by circulating supply.
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama stablecoins
+heidr defillama stablecoins --json
+\`\`\`
+
+#### \`heidr defillama tvl <slug>\`
+
+Get current TVL for a protocol.
+
+**Usage:** \`heidr defillama tvl <slug> [options]\`
+
+**Arguments:**
+- \`<slug>\` - Protocol slug (e.g. uniswap, aave)
+
+**Options:**
+- \`-j, --json\` - Output as JSON
+
+**Examples:**
+\`\`\`bash
+heidr defillama tvl uniswap
+heidr defillama tvl aave --json
+\`\`\`
+
+---
+
 ## Global Options
 
 - \`-v, --version\` - Output the current version

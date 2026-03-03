@@ -102,19 +102,9 @@ heidr balance vitalik.eth --json
 
 ### `heidr gas`
 
-Gas-related utilities including prices, costs, and fee analysis.
+Get current gas prices for any supported chain.
 
-**Subcommands:**
-
-#### `heidr gas price`
-
-Get current gas prices for any supported chain with priority levels (low/average/high).
-
-**Usage:** `heidr gas price [priority] [options]`
-
-**Arguments:**
-
-- `[priority]` - Gas priority level: "low", "average", or "high" (optional - shows all if omitted)
+**Usage:** `heidr gas [options]`
 
 **Options:**
 
@@ -124,80 +114,22 @@ Get current gas prices for any supported chain with priority levels (low/average
 **Examples:**
 
 ```bash
-# Show all priority levels
-heidr gas price
-heidr gas price --chain arbitrum
-
-# Show specific priority level
-heidr gas price low
-heidr gas price average --chain optimism
-heidr gas price high --chain polygon --json
+heidr gas
+heidr gas --chain arbitrum
+heidr gas --chain optimism --json
 ```
-
-**Priority Levels:**
-
-- **Low** (25th percentile) - For non-urgent transactions
-- **Average** (50th percentile) - For normal transactions
-- **High** (75th percentile) - For urgent transactions
-
-#### `heidr gas cost`
-
-Estimate transaction cost (not yet implemented).
-
-#### `heidr gas code`
-
-Get gas costs for EVM opcodes.
-
-**Usage:** `heidr gas code <identifier> [options]`
-
-**Arguments:**
-
-- `<identifier>` - Opcode hex (e.g., 00, 0x01, FF) or name (e.g., STOP, ADD, PUSH1) - case insensitive
-
-**Options:**
-
-- `-j, --json` - Output as JSON
-
-**Examples:**
-
-```bash
-# Get gas cost by opcode name
-heidr gas code ADD
-heidr gas code PUSH1
-heidr gas code keccak256
-
-# Get gas cost by hex
-heidr gas code 00
-heidr gas code 0x01
-heidr gas code ff
-
-# JSON output
-heidr gas code ADD --json
-```
-
-**Information Displayed:**
-
-- Opcode hex value
-- Mnemonic name
-- Minimum gas cost
-- Stack input requirements
-- Stack output
-
-#### `heidr gas fee`
-
-Get detailed fee breakdown (not yet implemented).
 
 ---
 
-### `heidr code`
+### `heidr l2beat`
 
-Get EVM opcode information from the complete EVM instruction set.
+L2Beat analytics — scaling projects, TVS, and transaction activity.
 
-**Usage:** `heidr code [identifier] [options]`
+**Subcommands:**
 
-**Arguments:**
+#### `heidr l2beat activity`
 
-- `[identifier]` - Opcode hex (e.g., 00, 0x01, FF) or name (e.g., STOP, ADD, PUSH1) - case insensitive (optional - shows all if omitted)
+Get aggregate transaction activity across all L2s (last 30 days).
 
 **Options:**
 
@@ -206,31 +138,278 @@ Get EVM opcode information from the complete EVM instruction set.
 **Examples:**
 
 ```bash
-# List all opcodes
-heidr code
-heidr code --json
-
-# Get opcode by hex
-heidr code 00
-heidr code 0x01
-heidr code ff
-
-# Get opcode by name (case-insensitive)
-heidr code STOP
-heidr code ADD
-heidr code push1
-heidr code KECCAK256
-heidr code add --json
+heidr l2beat activity
+heidr l2beat activity --json
 ```
 
-**Opcode Information Includes:**
+#### `heidr l2beat project <slug>`
 
-- Hex value
-- Mnemonic name
-- Minimum gas cost
-- Stack input requirements
-- Stack output
-- Description
+Get details for a specific L2Beat project.
+
+**Usage:** `heidr l2beat project <slug> [options]`
+
+**Arguments:**
+
+- `<slug>` - Project slug (e.g. arbitrum, optimism, base)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr l2beat project arbitrum
+heidr l2beat project optimism --json
+heidr l2beat project base
+```
+
+#### `heidr l2beat scaling`
+
+List all L2Beat scaling projects.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr l2beat scaling
+heidr l2beat scaling --json
+```
+
+#### `heidr l2beat tvs`
+
+Get aggregate Total Value Secured (TVS) across all L2s.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr l2beat tvs
+heidr l2beat tvs --json
+```
+
+---
+
+### `heidr defillama`
+
+DefiLLama DeFi analytics — TVL, prices, yields, DEX volumes, fees, bridges, hacks.
+
+**Subcommands:**
+
+#### `heidr defillama bridges`
+
+List cross-chain bridges by 24h volume.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama bridges
+heidr defillama bridges --json
+```
+
+#### `heidr defillama chain <name>`
+
+Get historical TVL for a specific chain.
+
+**Usage:** `heidr defillama chain <name> [options]`
+
+**Arguments:**
+
+- `<name>` - Chain name (e.g. Ethereum, Arbitrum, Base)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama chain Ethereum
+heidr defillama chain Arbitrum --json
+heidr defillama chain Base
+```
+
+#### `heidr defillama chains`
+
+List all chains with current TVL.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama chains
+heidr defillama chains --json
+```
+
+#### `heidr defillama dexs`
+
+Get aggregate DEX volume overview.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama dexs
+heidr defillama dexs --json
+```
+
+#### `heidr defillama fees`
+
+Get aggregate protocol fees & revenue overview.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama fees
+heidr defillama fees --json
+```
+
+#### `heidr defillama hacks`
+
+List historical DeFi hacks and exploits.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama hacks
+heidr defillama hacks --json
+```
+
+#### `heidr defillama pools`
+
+List top yield farming pools by TVL.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama pools
+heidr defillama pools --json
+```
+
+#### `heidr defillama price <coins...>`
+
+Get current or historical token prices.
+
+**Usage:** `heidr defillama price <coins...> [options]`
+
+**Arguments:**
+
+- `<coins...>` - One or more coin IDs (e.g. `coingecko:ethereum`, `ethereum:0xA0b8...`)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+- `--at <timestamp>` - Unix timestamp for historical price lookup
+
+**Examples:**
+
+```bash
+heidr defillama price coingecko:ethereum
+heidr defillama price coingecko:bitcoin coingecko:ethereum
+heidr defillama price coingecko:ethereum --at 1700000000
+heidr defillama price coingecko:ethereum --json
+```
+
+#### `heidr defillama protocol <slug>`
+
+Get TVL history and chain breakdown for a protocol.
+
+**Usage:** `heidr defillama protocol <slug> [options]`
+
+**Arguments:**
+
+- `<slug>` - Protocol slug (e.g. uniswap, aave, compound)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama protocol uniswap
+heidr defillama protocol aave --json
+heidr defillama protocol compound
+```
+
+#### `heidr defillama protocols`
+
+List all DeFi protocols with TVL (top 50 by default).
+
+**Options:**
+
+- `-j, --json` - Output as JSON (all protocols)
+
+**Examples:**
+
+```bash
+heidr defillama protocols
+heidr defillama protocols --json
+```
+
+#### `heidr defillama stablecoins`
+
+List stablecoins by circulating supply.
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama stablecoins
+heidr defillama stablecoins --json
+```
+
+#### `heidr defillama tvl <slug>`
+
+Get current TVL for a protocol.
+
+**Usage:** `heidr defillama tvl <slug> [options]`
+
+**Arguments:**
+
+- `<slug>` - Protocol slug (e.g. uniswap, aave)
+
+**Options:**
+
+- `-j, --json` - Output as JSON
+
+**Examples:**
+
+```bash
+heidr defillama tvl uniswap
+heidr defillama tvl aave --json
+```
 
 ---
 
