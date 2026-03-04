@@ -82,4 +82,49 @@ export class RpcProvider {
   async getTransaction(hash: `0x${string}`) {
     return this.client.getTransaction({ hash });
   }
+
+  async getBytecode(address: `0x${string}`) {
+    return this.client.getBytecode({ address });
+  }
+
+  async getTransactionCount(address: `0x${string}`, blockTag: 'latest' | 'pending' = 'latest') {
+    return this.client.getTransactionCount({ address, blockTag });
+  }
+
+  async getStorageAt(address: `0x${string}`, slot: `0x${string}`) {
+    return this.client.getStorageAt({ address, slot });
+  }
+
+  async call(to: `0x${string}`, data: `0x${string}`) {
+    return this.client.call({ to, data });
+  }
+
+  async estimateGas(params: { to?: `0x${string}`; data?: `0x${string}`; value?: bigint }) {
+    return this.client.estimateGas(params);
+  }
+
+  async getLogs(params: { address?: `0x${string}`; fromBlock?: bigint; toBlock?: bigint }) {
+    return this.client.getLogs(params);
+  }
+
+  async getChainId() {
+    return this.client.getChainId();
+  }
+
+  async getTransactionReceipt(hash: `0x${string}`) {
+    return this.client.getTransactionReceipt({ hash });
+  }
+
+  async getProof(address: `0x${string}`, storageKeys: `0x${string}`[]) {
+    return this.client.getProof({ address, storageKeys });
+  }
+
+  async readContract(params: {
+    address: `0x${string}`;
+    abi: unknown[];
+    functionName: string;
+    args?: unknown[];
+  }) {
+    return this.client.readContract(params as Parameters<typeof this.client.readContract>[0]);
+  }
 }
