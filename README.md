@@ -13,7 +13,7 @@
 > _Nought was there but byte and hex,_  
 > _ne'er a prompt nor token gleamed,_  
 > _till heidr's runes were cast by hand._  
-> _Nine commands I saw, and nine the worlds,_  
+> _Many commands I saw, and many the chains,_  
 > _each chain a branch on the cosmic tree,_  
 > _and each flag a beacon to realms unseen._
 
